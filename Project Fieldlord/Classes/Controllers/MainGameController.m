@@ -18,8 +18,11 @@
 	if ((self = [super init])) {
 		
 		self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-		self.view.backgroundColor = [UIColor redColor];
+		self.view.backgroundColor = [UIColor whiteColor];
 		
+		
+		MonsterView *foo = [[MonsterView alloc] initWithFrame:CGRectMake(50, 50, 50, 50)];
+		[self.view addSubview:foo];
 	}
 	return self;
 }

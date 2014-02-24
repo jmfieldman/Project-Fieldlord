@@ -10,4 +10,12 @@
 
 @interface MonsterView : UIView
 
+@property (nonatomic, strong, readonly) UIView *bodyView;
+@property (nonatomic, strong, readonly) UIView *LEyeView;
+@property (nonatomic, strong, readonly) UIView *REyeView;
+@property (nonatomic, strong, readonly) UIView *noseView;
+
+
+- (void) animateBlink;
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MonsterView.h"
 
 @interface MainGameController : UIViewController
 
