@@ -82,7 +82,7 @@ static __strong NSMutableDictionary *s_dictionaryDictionary = nil;
 			NSData *propListData = [NSData dataWithContentsOfFile:_filePath];
 			if (propListData) {
 				NSPropertyListFormat format;
-				_dictionary = [NSPropertyListSerialization propertyListFromData:propListData mutabilityOption:kCFPropertyListMutableContainersAndLeaves format:&format errorDescription:nil];
+				_dictionary = [NSPropertyListSerialization propertyListWithData:propListData options:NSPropertyListMutableContainersAndLeaves format:&format error:nil];
 			}
 			
 			/* Check md5 hash */
@@ -107,7 +107,7 @@ static __strong NSMutableDictionary *s_dictionaryDictionary = nil;
 				NSData *propListData = [NSData dataWithContentsOfFile:defaultDicPath];
 				if (propListData) {
 					NSPropertyListFormat format;
-					_dictionary = [NSPropertyListSerialization propertyListFromData:propListData mutabilityOption:kCFPropertyListMutableContainersAndLeaves format:&format errorDescription:nil];
+					_dictionary = [NSPropertyListSerialization propertyListWithData:propListData options:NSPropertyListMutableContainersAndLeaves format:&format error:nil];
 				}
 			}
 		}

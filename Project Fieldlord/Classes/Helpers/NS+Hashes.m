@@ -211,7 +211,7 @@
     const unsigned char *inputBytes = [inputData bytes];
     
     long long maxOutputLength = (inputLength / 4 + 1) * 3;
-    NSMutableData *outputData = [NSMutableData dataWithLength:maxOutputLength];
+    NSMutableData *outputData = [NSMutableData dataWithLength:(int)maxOutputLength];
     unsigned char *outputBytes = (unsigned char *)[outputData mutableBytes];
 	
     int accumulator = 0;
@@ -255,7 +255,7 @@
     
     long long maxOutputLength = (inputLength / 3 + 1) * 4;
     maxOutputLength += wrapWidth? (maxOutputLength / wrapWidth) * 2: 0;
-    unsigned char *outputBytes = (unsigned char *)malloc(maxOutputLength);
+    unsigned char *outputBytes = (unsigned char *)malloc((int)maxOutputLength);
     
     long long i;
     long long outputLength = 0;
@@ -293,8 +293,8 @@
     }
     
     //truncate data to match actual output length
-    outputBytes = realloc(outputBytes, outputLength);
-    NSString *result = [[NSString alloc] initWithBytesNoCopy:outputBytes length:outputLength encoding:NSASCIIStringEncoding freeWhenDone:YES];
+    outputBytes = realloc(outputBytes, (int)outputLength);
+    NSString *result = [[NSString alloc] initWithBytesNoCopy:outputBytes length:(int)outputLength encoding:NSASCIIStringEncoding freeWhenDone:YES];
 	
 #if !__has_feature(objc_arc)
     [result autorelease];
