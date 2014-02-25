@@ -10,4 +10,8 @@
 
 @implementation GameState
 
+SINGLETON_IMPL(GameState);
+
+
+
 @end

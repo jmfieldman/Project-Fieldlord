@@ -7,7 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MonsterView.h"
 
 @interface MonsterInfo : NSObject
+
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) NSString *description;
+@property (nonatomic, readonly) UIColor *color;
+
+@property (nonatomic, readonly) CGSize defaultSize;
+@property (nonatomic, readonly) MonsterView *view;
+
++ (MonsterInfo*) monsterAtIndex:(int)index;
++ (int) maxMonsterCount;
+
+- (id) initWithName:(NSString*)name description:(NSString*)description color:(UIColor*)color;
 
 @end

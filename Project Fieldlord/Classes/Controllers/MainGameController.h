@@ -8,7 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "MonsterView.h"
+#import "MonsterInfo.h"
+#import "GameState.h"
 
-@interface MainGameController : UIViewController
+@interface MainGameController : UIViewController {
+	int _currentMonsterCount;
+	
+	/* Views */
+	UIView *_monsterField;
+}
+
+SINGLETON_INTR(MainGameController);
+
+- (void) animateMonsterCountTo:(int)numMonsters;
 
 @end

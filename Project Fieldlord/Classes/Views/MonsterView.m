@@ -18,6 +18,13 @@
 		_bodyView = [[UIView alloc] initWithFrame:self.bounds];
 		_bodyView.backgroundColor = [UIColor redColor];
 		_bodyView.layer.cornerRadius = 4;
+		_bodyView.layer.borderWidth = 1;
+		_bodyView.layer.shadowOpacity = 0.5;
+		_bodyView.layer.shadowColor = [UIColor blackColor].CGColor;
+		_bodyView.layer.shadowOffset = CGSizeMake(1, 1);
+		_bodyView.layer.shadowRadius = 2;
+		_bodyView.layer.shouldRasterize = YES;
+		_bodyView.alpha = 0.5;
 		[self addSubview:_bodyView];
 		
 		_LEyeView = [[UIView alloc] initWithFrame:CGRectMake(5, 5, 5, 5)];
@@ -32,8 +39,6 @@
 		_noseView.backgroundColor = [UIColor blackColor];
 		[self addSubview:_noseView];
 		
-		[self performSelector:@selector(animateBodyBobbleDefault) withObject:nil afterDelay:2];
-	
 		/* Create animations */
 		float shrink = 0.9;
 		
