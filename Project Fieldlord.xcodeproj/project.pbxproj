@@ -28,6 +28,7 @@
 		35E1612F18BBE5E2002962D3 /* NS+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1612E18BBE5E2002962D3 /* NS+Hashes.m */; };
 		35E1613518BBE838002962D3 /* MonsterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1613418BBE838002962D3 /* MonsterView.m */; };
 		35E1613818BC33FF002962D3 /* Dosis-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 35E1613718BC33FF002962D3 /* Dosis-Regular.otf */; };
+		35E1613B18BCECF4002962D3 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1613A18BCECF4002962D3 /* GameState.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,9 +72,11 @@
 		35E1612718BBE5C2002962D3 /* SingletonHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonHelper.m; sourceTree = "<group>"; };
 		35E1612D18BBE5E2002962D3 /* NS+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NS+Hashes.h"; sourceTree = "<group>"; };
 		35E1612E18BBE5E2002962D3 /* NS+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NS+Hashes.m"; sourceTree = "<group>"; };
-		35E1613318BBE838002962D3 /* MonsterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MonsterView.h; path = "Project Fieldlord/Classes/Models/MonsterView.h"; sourceTree = SOURCE_ROOT; };
-		35E1613418BBE838002962D3 /* MonsterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MonsterView.m; path = "Project Fieldlord/Classes/Models/MonsterView.m"; sourceTree = SOURCE_ROOT; };
+		35E1613318BBE838002962D3 /* MonsterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MonsterView.h; path = "Project Fieldlord/Classes/Views/MonsterView.h"; sourceTree = SOURCE_ROOT; };
+		35E1613418BBE838002962D3 /* MonsterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MonsterView.m; path = "Project Fieldlord/Classes/Views/MonsterView.m"; sourceTree = SOURCE_ROOT; };
 		35E1613718BC33FF002962D3 /* Dosis-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-Regular.otf"; sourceTree = "<group>"; };
+		35E1613918BCECF4002962D3 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
+		35E1613A18BCECF4002962D3 /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +181,8 @@
 		3537D20218BBE3B90021C8CF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				35E1613918BCECF4002962D3 /* GameState.h */,
+				35E1613A18BCECF4002962D3 /* GameState.m */,
 			);
 			name = Models;
 			path = Classes/Models;
@@ -332,6 +337,7 @@
 				3537D20818BBE3FC0021C8CF /* MainGameController.m in Sources */,
 				35E1612F18BBE5E2002962D3 /* NS+Hashes.m in Sources */,
 				35E1612A18BBE5C2002962D3 /* SKBounceAnimation.m in Sources */,
+				35E1613B18BCECF4002962D3 /* GameState.m in Sources */,
 				35E1612918BBE5C2002962D3 /* PersistentDictionary.m in Sources */,
 				3537D1E418BBE3700021C8CF /* AppDelegate.m in Sources */,
 				3537D1E018BBE3700021C8CF /* main.m in Sources */,
