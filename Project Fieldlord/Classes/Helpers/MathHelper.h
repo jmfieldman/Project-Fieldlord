@@ -67,7 +67,7 @@ static inline BOOL isPointInCircle(int px, int py, int cx, int cy, int radius) {
 }
 
 /* Fast random number generator */
-#define RNG_SZ       4096
+#define RNG_SZ       8192
 #define RNG_SZ_SHIFT 0xFFF
 extern int rng_pool[RNG_SZ];
 extern int *rng_ptr;
@@ -90,7 +90,7 @@ static inline double doubleBetween(double low, double high) {
 
 
 /* Fast integer sqrt helper */
-static uint32_t FastIntSQRT(uint32_t a_nInput) {
+__attribute__((unused)) static uint32_t FastIntSQRT(uint32_t a_nInput) {
     uint32_t op  = a_nInput;
     uint32_t res = 0;
     uint32_t one = 1uL << 30; // The second-to-top bit is set: use 1u << 14 for uint16_t type; use 1uL<<30 for uint32_t type
@@ -112,12 +112,12 @@ static uint32_t FastIntSQRT(uint32_t a_nInput) {
 }
 
 /* floating point modulus functions */
-static double s_modulus_double(double a, double b) {
+__attribute__((unused)) static double s_modulus_double(double a, double b) {
 	int result = (int)( a / b );
 	return a - (double)( result ) * b;
 }
 
-static float s_modulus_float(float a, float b) {
+__attribute__((unused)) static float s_modulus_float(float a, float b) {
 	int result = (int)( a / b );
 	return a - (float)( result ) * b;
 }
@@ -126,7 +126,7 @@ static float s_modulus_float(float a, float b) {
 int nonlinear_random_distribution(int *possibles, int *weights, int n);
 
 /* 50/50 chance to invert the integer (* -1) */
-static int random_invert(int i) {
+__attribute__((unused)) static int random_invert(int i) {
 	if (rand() & 1) {
 		return i * -1;
 	}

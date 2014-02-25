@@ -78,13 +78,17 @@
 		_bodyBobbleBackHAnimation.stiffness = _bodyBobbleBackWAnimation.stiffness;
 		_bodyBobbleBackHAnimation.numberOfBounces = 2;
 		
+		
+		[self animateBlinkDefault];
 	}
 	return self;
 }
 
 
 - (void) animateBlinkDefault {
-	[self animateBlinkWithSpeed:0.15 duration:0];
+	[self animateBlinkWithSpeed:0.125 duration:0];
+	
+	[self performSelector:@selector(animateBlinkDefault) withObject:nil afterDelay:(rand()%300/30.0)+2];
 }
 
 - (void) animateBlinkWithSpeed:(float)speed duration:(float)duration {

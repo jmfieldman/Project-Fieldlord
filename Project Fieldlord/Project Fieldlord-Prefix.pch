@@ -20,4 +20,5 @@
 	#import "PersistentDictionary.h"
 	#import "SingletonHelper.h"
 	#import "SKBounceAnimation.h"
+	#import "MathHelper.h"
 #endif

@@ -30,6 +30,7 @@
 		35E1613818BC33FF002962D3 /* Dosis-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 35E1613718BC33FF002962D3 /* Dosis-Regular.otf */; };
 		35E1613B18BCECF4002962D3 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1613A18BCECF4002962D3 /* GameState.m */; };
 		35E1613E18BCEF8B002962D3 /* MonsterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1613D18BCEF8B002962D3 /* MonsterInfo.m */; };
+		35E1614118BD1123002962D3 /* MathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1614018BD1123002962D3 /* MathHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		35E1613A18BCECF4002962D3 /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 		35E1613C18BCEF8B002962D3 /* MonsterInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterInfo.h; sourceTree = "<group>"; };
 		35E1613D18BCEF8B002962D3 /* MonsterInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonsterInfo.m; sourceTree = "<group>"; };
+		35E1613F18BD1123002962D3 /* MathHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathHelper.h; sourceTree = "<group>"; };
+		35E1614018BD1123002962D3 /* MathHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MathHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +219,8 @@
 		3537D20518BBE3CC0021C8CF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				35E1613F18BD1123002962D3 /* MathHelper.h */,
+				35E1614018BD1123002962D3 /* MathHelper.m */,
 				35E1612D18BBE5E2002962D3 /* NS+Hashes.h */,
 				35E1612E18BBE5E2002962D3 /* NS+Hashes.m */,
 				35E1612218BBE5C2002962D3 /* EXDebug.h */,
@@ -338,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35E1612B18BBE5C2002962D3 /* EXRemoteLog.m in Sources */,
+				35E1614118BD1123002962D3 /* MathHelper.m in Sources */,
 				35E1612818BBE5C2002962D3 /* EXDebug.m in Sources */,
 				3537D20818BBE3FC0021C8CF /* MainGameController.m in Sources */,
 				35E1612F18BBE5E2002962D3 /* NS+Hashes.m in Sources */,

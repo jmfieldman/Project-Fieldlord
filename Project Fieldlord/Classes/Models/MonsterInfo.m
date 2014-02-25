@@ -20,6 +20,11 @@ static __strong NSMutableArray *s_monsterArray = nil;
 		[s_monsterArray addObject:[[MonsterInfo alloc] initWithName:@"Foob" description:@"Boof" color:[UIColor redColor]]];
 		[s_monsterArray addObject:[[MonsterInfo alloc] initWithName:@"Foob" description:@"Boof" color:[UIColor blueColor]]];
 		[s_monsterArray addObject:[[MonsterInfo alloc] initWithName:@"Foob" description:@"Boof" color:[UIColor greenColor]]];
+		
+		for (int t = 0; t < 20; t++) {
+			UIColor *c = [UIColor colorWithRed:rand()%255/255.0 green:rand()%255/255.0 blue:rand()%255/255.0 alpha:1];
+			[s_monsterArray addObject:[[MonsterInfo alloc] initWithName:@"Foob" description:@"Boof" color:c]];
+		}
 	}
 	
 	if (index >= [s_monsterArray count]) return nil;
@@ -37,7 +42,7 @@ static __strong NSMutableArray *s_monsterArray = nil;
 		_description = description;
 		_color = color;
 		
-		_defaultSize = CGSizeMake(50, 70);
+		_defaultSize = CGSizeMake(rand()%30+50, rand()%30+50);
 		
 		_view = [[MonsterView alloc] initWithFrame:CGRectMake(-1000, -1000, _defaultSize.width, _defaultSize.height)];
 		_view.bodyView.backgroundColor = color;

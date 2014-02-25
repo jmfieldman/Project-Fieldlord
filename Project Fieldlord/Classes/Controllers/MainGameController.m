@@ -8,6 +8,8 @@
 
 #import "MainGameController.h"
 
+
+
 @interface MainGameController ()
 
 @end
@@ -24,7 +26,7 @@ SINGLETON_IMPL(MainGameController);
 		self.view.backgroundColor = [UIColor whiteColor];
 		
 		/* Create the monster field */
-		_monsterField = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+		_monsterField = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 320, 320)];
 		_monsterField.backgroundColor = [UIColor clearColor];
 		[self.view addSubview:_monsterField];
 		
@@ -35,13 +37,15 @@ SINGLETON_IMPL(MainGameController);
 			[_monsterField addSubview:v];
 		}
 		
+		/*
 		UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(10, 200, 200, 50)];
 		lab.text = @"Hello World!";
 		lab.font = [UIFont fontWithName:@"Dosis-Regular" size:20];
 		[self.view addSubview:lab];
-		
+		 */
+		 
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
-			[self animateMonsterCountTo:3];
+			[self animateMonsterCountTo:15];
 		});
 	}
 	return self;
