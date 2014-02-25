@@ -12,14 +12,20 @@
 #import "GameState.h"
 
 @interface MainGameController : UIViewController {
-	int _currentMonsterCount;
+
+	/* Active monsters */
+	NSMutableArray *_activeMonsters;
 	
 	/* Views */
 	UIView *_monsterField;
 }
 
+@property (nonatomic, readonly) float affinityChance;
+@property (nonatomic, readonly) float affinityStrength;
+
 SINGLETON_INTR(MainGameController);
 
-- (void) animateMonsterCountTo:(int)numMonsters;
+- (void) setMonsterCountTo:(int)numMonsters;
+- (void) animateMonstersNewPositions;
 
 @end

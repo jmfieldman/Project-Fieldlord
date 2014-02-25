@@ -36,6 +36,24 @@ static __strong NSMutableArray *s_monsterArray = nil;
 	return [s_monsterArray count];
 }
 
++ (int) indexForRandomMonsterWithActiveState:(BOOL)active {
+	int total = 0;
+	for (int i = 0; i < [MonsterInfo maxMonsterCount]; i++) {
+		if ([MonsterInfo monsterAtIndex:i].active == active) {
+			total++;
+		}
+	}
+	if (total == 0) return -1;
+	int whichMonster = rand() % total;
+	for (int i = 0; 1; i++) {
+		if ([MonsterInfo monsterAtIndex:i].active == active) {
+			if (whichMonster == 0) return i;
+			whichMonster--;
+		}
+	}
+	return -1;
+}
+
 - (id) initWithName:(NSString*)name description:(NSString*)description color:(UIColor*)color {
 	if ((self = [super init])) {
 		_name = name;
@@ -50,5 +68,14 @@ static __strong NSMutableArray *s_monsterArray = nil;
 	return self;
 }
 
+- (CGPoint) randomValidCenterInSize:(CGSize)size {
+	float halfw = self.view.bounds.size.width / 2;
+	float halfh = self.view.bounds.size.height / 2;
+	
+	float newx = floatBetween(0, size.width  - (halfw*2)) + halfw;
+	float newy = floatBetween(0, size.height - (halfh*2)) + halfh;
+	
+	return CGPointMake(newx, newy);
+}
 
 @end

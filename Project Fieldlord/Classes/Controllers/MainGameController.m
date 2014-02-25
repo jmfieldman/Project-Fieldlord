@@ -25,8 +25,11 @@ SINGLETON_IMPL(MainGameController);
 		self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
 		self.view.backgroundColor = [UIColor whiteColor];
 		
+		/* Initialize monsters */
+		_activeMonsters = [NSMutableArray array];
+		
 		/* Create the monster field */
-		_monsterField = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 320, 320)];
+		_monsterField = [[UIView alloc] initWithFrame:CGRectMake(10, 50, 300, 300)];
 		_monsterField.backgroundColor = [UIColor clearColor];
 		[self.view addSubview:_monsterField];
 		
@@ -44,29 +47,44 @@ SINGLETON_IMPL(MainGameController);
 		[self.view addSubview:lab];
 		 */
 		 
-		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
-			[self animateMonsterCountTo:15];
-		});
+		[self setMonsterCountTo:15];
+		
 	}
 	return self;
 }
 
+- (float) affinityChance {
+	return 0.5;
+}
 
-- (void) animateMonsterCountTo:(int)numMonsters {
+- (float) affinityStrength {
+	return 0.5;
+}
+
+- (void) setMonsterCountTo:(int)numMonsters {
 	
-	if (_currentMonsterCount < numMonsters) {
-		for (int i = _currentMonsterCount; i < numMonsters; i++) {
-			MonsterView *m = [MonsterInfo monsterAtIndex:i].view;
-			double ang = rand();
-			m.center = CGPointMake( 160 + 240*cos(ang), 240 + 320*sin(ang) );
+	if ([_activeMonsters count] < numMonsters) {
+		for (int i = [_activeMonsters count]; i < numMonsters; i++) {
 			
-			[UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-				m.center = CGPointMake(rand()%200+60, rand()%200+60);
-			} completion:nil];
+			int mIndex = [MonsterInfo indexForRandomMonsterWithActiveState:NO];
+			MonsterInfo *newMonster = [MonsterInfo monsterAtIndex:mIndex];
+			
+			/* Add to array */
+			[_activeMonsters addObject:newMonster];
+			
+			/* Set to point off screen for next lead in */
+			MonsterView *m = newMonster.view;
+			double ang = rand();
+			m.center = CGPointMake( 160 + 280*cos(ang), 240 + 360*sin(ang) );
 			
 		}
 	}
-	
+}
+
+- (void) animateMonstersNewPositions {
+	for (MonsterInfo *activeMonster in _activeMonsters) {
+		
+	}
 }
 
 
