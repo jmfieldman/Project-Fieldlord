@@ -23,6 +23,12 @@
 		
 		MonsterView *foo = [[MonsterView alloc] initWithFrame:CGRectMake(50, 50, 50, 50)];
 		[self.view addSubview:foo];
+		
+		
+		UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(10, 200, 200, 50)];
+		lab.text = @"Hello World!";
+		lab.font = [UIFont fontWithName:@"Dosis-Regular" size:20];
+		[self.view addSubview:lab];
 	}
 	return self;
 }

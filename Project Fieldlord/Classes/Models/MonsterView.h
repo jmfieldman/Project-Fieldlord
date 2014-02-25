@@ -8,14 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MonsterView : UIView
+@interface MonsterView : UIView {
+	SKBounceAnimation *_bodyBobbleWideWAnimation;
+	SKBounceAnimation *_bodyBobbleWideHAnimation;
+	SKBounceAnimation *_bodyBobbleBackWAnimation;
+	SKBounceAnimation *_bodyBobbleBackHAnimation;
+	
+}
 
 @property (nonatomic, strong, readonly) UIView *bodyView;
 @property (nonatomic, strong, readonly) UIView *LEyeView;
 @property (nonatomic, strong, readonly) UIView *REyeView;
 @property (nonatomic, strong, readonly) UIView *noseView;
 
-
-- (void) animateBlink;
 
 @end
