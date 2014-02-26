@@ -72,8 +72,8 @@ static __strong NSMutableArray *s_monsterArray = nil;
 	float halfw = self.view.bounds.size.width / 2;
 	float halfh = self.view.bounds.size.height / 2;
 	
-	float newx = floatBetween(0, size.width  - (halfw*2)) + halfw;
-	float newy = floatBetween(0, size.height - (halfh*2)) + halfh;
+	float newx = 10 + floatBetween(0, size.width  - (halfw*2) - 20) + halfw;
+	float newy = 10 + floatBetween(0, size.height - (halfh*2) - 20) + halfh;
 	
 	return CGPointMake(newx, newy);
 }

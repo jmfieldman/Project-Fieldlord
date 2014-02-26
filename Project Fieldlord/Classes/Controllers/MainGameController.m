@@ -25,11 +25,15 @@ SINGLETON_IMPL(MainGameController);
 		self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
 		self.view.backgroundColor = [UIColor whiteColor];
 		
+		/* Add background */
+		UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"game_background"]];
+		[self.view addSubview:background];
+		
 		/* Initialize monsters */
 		_activeMonsters = [NSMutableArray array];
 		
 		/* Create the monster field */
-		_monsterField = [[UIView alloc] initWithFrame:CGRectMake(10, 50, 300, 300)];
+		_monsterField = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 320, 320)];
 		_monsterField.backgroundColor = [UIColor clearColor];
 		[self.view addSubview:_monsterField];
 		
@@ -52,6 +56,16 @@ SINGLETON_IMPL(MainGameController);
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
 			[self animateMonstersNewPositions];
 		});
+		
+		
+		/* Add guesture pad last */
+		_gesturePad = [[UIView alloc] initWithFrame:_monsterField.bounds];
+		_gesturePad.backgroundColor = [UIColor clearColor];
+		[_monsterField addSubview:_gesturePad];
+		
+		UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGuesture:)];
+		[_gesturePad addGestureRecognizer:recognizer];
+		
 	}
 	return self;
 }
@@ -62,6 +76,14 @@ SINGLETON_IMPL(MainGameController);
 
 - (float) affinityStrength {
 	return 0.5;
+}
+
+- (float) fearRadius {
+	return 60;
+}
+
+- (float) fearMultiplier {
+	return 5;
 }
 
 - (void) setMonsterCountTo:(int)numMonsters {
@@ -107,6 +129,38 @@ SINGLETON_IMPL(MainGameController);
 	}
 	
 	return point;
+}
+
+- (void) animateMonstersToAvoidTouchAt:(CGPoint)point {
+	float fRadius = self.fearRadius;
+	float fMulti  = self.fearMultiplier;
+	
+	for (MonsterInfo *activeMonster in _activeMonsters) {
+		CGPoint currentMonsterCenter = ((CALayer*)activeMonster.view.layer.presentationLayer).position;
+		float xdiff = currentMonsterCenter.x - point.x;
+		float ydiff = currentMonsterCenter.y - point.y;
+		float dist = sqrtf(xdiff * xdiff + ydiff * ydiff);
+		NSLog(@"dist: %f", dist);
+		if (dist < fRadius) {
+			if (fabs(xdiff) < 1) xdiff = 1;
+			if (fabs(ydiff) < 1) ydiff = 1;
+			float fear = fMulti * (fRadius - dist) / fRadius;
+			CGPoint newPoint = CGPointMake(currentMonsterCenter.x + xdiff*fear, currentMonsterCenter.y + ydiff*fear);
+			if (newPoint.x < -10) newPoint.x = -10;
+			if (newPoint.y < -10) newPoint.y = -10;
+			if (newPoint.x > (_monsterField.bounds.size.width  + 10)) newPoint.x = (_monsterField.bounds.size.width  + 10);
+			if (newPoint.y > (_monsterField.bounds.size.height + 10)) newPoint.y = (_monsterField.bounds.size.height + 10);
+			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(floatBetween(0, 0.1) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
+				[activeMonster.view animateToNewCenter:newPoint];
+			});
+		}
+	}
+}
+
+- (void)handleTapGuesture:(UIGestureRecognizer *)gestureRecognizer {
+	CGPoint p = [gestureRecognizer locationInView:_gesturePad];
+	NSLog(@"tapped at %f %f", p.x, p.y);
+	[self animateMonstersToAvoidTouchAt:p];
 }
 
 

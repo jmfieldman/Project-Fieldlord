@@ -106,6 +106,7 @@
 						 self.center = newCenter;
 					 } completion:nil];
 	*/
+	self.center = newCenter;
 	SKBounceAnimation *animation = [SKBounceAnimation animationWithKeyPath:@"position"];
 	animation.fromValue = [NSValue valueWithCGPoint:((CALayer*)self.layer.presentationLayer).position];
 	animation.toValue = [NSValue valueWithCGPoint:newCenter];
@@ -115,6 +116,8 @@
 	animation.stiffness = SKBounceAnimationStiffnessHeavy;
 	animation.numberOfBounces = 3;
 	[self.layer addAnimation:animation forKey:@"moveMonster"];
+	
+	[self animateBodyBobbleWithDuration:animation.duration * 0.25];
 }
 
 

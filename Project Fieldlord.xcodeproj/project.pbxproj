@@ -31,6 +31,7 @@
 		35E1613B18BCECF4002962D3 /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1613A18BCECF4002962D3 /* GameState.m */; };
 		35E1613E18BCEF8B002962D3 /* MonsterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1613D18BCEF8B002962D3 /* MonsterInfo.m */; };
 		35E1614118BD1123002962D3 /* MathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1614018BD1123002962D3 /* MathHelper.m */; };
+		35E1614618BE3D50002962D3 /* game_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35E1614518BE3D50002962D3 /* game_background@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		35E1613D18BCEF8B002962D3 /* MonsterInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonsterInfo.m; sourceTree = "<group>"; };
 		35E1613F18BD1123002962D3 /* MathHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathHelper.h; sourceTree = "<group>"; };
 		35E1614018BD1123002962D3 /* MathHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MathHelper.m; sourceTree = "<group>"; };
+		35E1614518BE3D50002962D3 /* game_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_background@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 		3537D1DA18BBE3700021C8CF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				35E1614218BE3D50002962D3 /* Images */,
 				35E1613618BC33FF002962D3 /* Fonts */,
 				3537D1DB18BBE3700021C8CF /* Project Fieldlord-Info.plist */,
 				3537D1DC18BBE3700021C8CF /* InfoPlist.strings */,
@@ -246,6 +249,30 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		35E1614218BE3D50002962D3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				35E1614318BE3D50002962D3 /* System */,
+				35E1614418BE3D50002962D3 /* UI */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		35E1614318BE3D50002962D3 /* System */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		35E1614418BE3D50002962D3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				35E1614518BE3D50002962D3 /* game_background@2x.png */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -321,6 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35E1614618BE3D50002962D3 /* game_background@2x.png in Resources */,
 				3537D1DE18BBE3700021C8CF /* InfoPlist.strings in Resources */,
 				35E1613818BC33FF002962D3 /* Dosis-Regular.otf in Resources */,
 				3537D1E618BBE3700021C8CF /* Images.xcassets in Resources */,

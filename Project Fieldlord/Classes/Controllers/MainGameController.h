@@ -11,8 +11,11 @@
 #import "MonsterInfo.h"
 #import "GameState.h"
 
-@interface MainGameController : UIViewController {
+@interface MainGameController : UIViewController <UIGestureRecognizerDelegate> {
 
+	/* Gesture Pad */
+	UIView *_gesturePad;
+	
 	/* Active monsters */
 	NSMutableArray *_activeMonsters;
 	
@@ -22,10 +25,13 @@
 
 @property (nonatomic, readonly) float affinityChance;
 @property (nonatomic, readonly) float affinityStrength;
+@property (nonatomic, readonly) float fearRadius;
+@property (nonatomic, readonly) float fearMultiplier;
 
 SINGLETON_INTR(MainGameController);
 
 - (void) setMonsterCountTo:(int)numMonsters;
 - (void) animateMonstersNewPositions;
+- (void) animateMonstersToAvoidTouchAt:(CGPoint)point;
 
 @end
