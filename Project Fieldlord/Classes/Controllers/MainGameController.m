@@ -47,8 +47,11 @@ SINGLETON_IMPL(MainGameController);
 		[self.view addSubview:lab];
 		 */
 		 
-		[self setMonsterCountTo:15];
+		[self setMonsterCountTo:14];
 		
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
+			[self animateMonstersNewPositions];
+		});
 	}
 	return self;
 }
@@ -71,20 +74,39 @@ SINGLETON_IMPL(MainGameController);
 			
 			/* Add to array */
 			[_activeMonsters addObject:newMonster];
+			newMonster.active = YES;
 			
 			/* Set to point off screen for next lead in */
 			MonsterView *m = newMonster.view;
-			double ang = rand();
-			m.center = CGPointMake( 160 + 280*cos(ang), 240 + 360*sin(ang) );
-			
+			double ang = (rand()%360) * M_PI / 180.0 ;
+			m.center = CGPointMake( _monsterField.bounds.size.width/2 + 480*cos(ang), _monsterField.bounds.size.height/2 + 480*sin(ang) );			
 		}
 	}
 }
 
 - (void) animateMonstersNewPositions {
+	int i = 0;
 	for (MonsterInfo *activeMonster in _activeMonsters) {
-		
+		CGPoint center = [self newRandomCenterForActiveMonsterAtIndex:i];
+		[activeMonster.view animateToNewCenter:center];
+		i++;
 	}
+}
+
+- (CGPoint) newRandomCenterForActiveMonsterAtIndex:(int)index {
+	MonsterInfo *monster = _activeMonsters[index];
+	CGPoint point = [monster randomValidCenterInSize:_monsterField.bounds.size];
+	
+	if (0 && index > 0) {
+		/* If we need to create affinity to another monster, do so */
+		if (self.affinityChance < floatBetween(0, 1)) {
+			MonsterInfo *otherMonster = _activeMonsters[rand()%index];
+			point.x += (self.affinityStrength) * (otherMonster.view.center.x - point.x);
+			point.y += (self.affinityStrength) * (otherMonster.view.center.y - point.y);
+		}
+	}
+	
+	return point;
 }
 
 

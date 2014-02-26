@@ -17,9 +17,12 @@
 }
 
 @property (nonatomic, strong, readonly) UIView *bodyView;
+@property (nonatomic, strong, readonly) UIView *faceView;
 @property (nonatomic, strong, readonly) UIView *LEyeView;
 @property (nonatomic, strong, readonly) UIView *REyeView;
 @property (nonatomic, strong, readonly) UIView *noseView;
 
+- (void) animateToNewCenter:(CGPoint)newCenter;
+- (void) animateToFaceLeft:(BOOL)left;
 
 @end

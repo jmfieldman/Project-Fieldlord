@@ -27,17 +27,21 @@
 		_bodyView.alpha = 0.5;
 		[self addSubview:_bodyView];
 		
+		_faceView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+		_faceView.backgroundColor = [UIColor clearColor];
+		[self addSubview:_faceView];
+		
 		_LEyeView = [[UIView alloc] initWithFrame:CGRectMake(5, 5, 5, 5)];
 		_LEyeView.backgroundColor = [UIColor blackColor];
-		[self addSubview:_LEyeView];
+		[_faceView addSubview:_LEyeView];
 		
 		_REyeView = [[UIView alloc] initWithFrame:CGRectMake(15, 5, 5, 5)];
 		_REyeView.backgroundColor = [UIColor blackColor];
-		[self addSubview:_REyeView];
+		[_faceView addSubview:_REyeView];
 		
 		_noseView = [[UIView alloc] initWithFrame:CGRectMake(10, 12, 5, 5)];
 		_noseView.backgroundColor = [UIColor blackColor];
-		[self addSubview:_noseView];
+		[_faceView addSubview:_noseView];
 		
 		/* Create animations */
 		float shrink = 0.9;
@@ -82,6 +86,35 @@
 		[self animateBlinkDefault];
 	}
 	return self;
+}
+
+- (void) animateToFaceLeft:(BOOL)left {
+	[UIView animateWithDuration:0.4
+						  delay:0
+						options:UIViewAnimationOptionCurveEaseInOut
+					 animations:^{
+						 _faceView.frame = CGRectMake(left?0:(_bodyView.bounds.size.width-_faceView.bounds.size.width), 0, _faceView.bounds.size.width, _faceView.bounds.size.height);
+					 } completion:nil];
+}
+
+- (void) animateToNewCenter:(CGPoint)newCenter {
+	/*
+	[UIView animateWithDuration:1.5
+						  delay:0
+						options:UIViewAnimationOptionCurveEaseInOut
+					 animations:^{
+						 self.center = newCenter;
+					 } completion:nil];
+	*/
+	SKBounceAnimation *animation = [SKBounceAnimation animationWithKeyPath:@"position"];
+	animation.fromValue = [NSValue valueWithCGPoint:((CALayer*)self.layer.presentationLayer).position];
+	animation.toValue = [NSValue valueWithCGPoint:newCenter];
+	animation.duration = 2.5;
+	animation.fillMode = kCAFillModeForwards;
+	animation.removedOnCompletion = NO;
+	animation.stiffness = SKBounceAnimationStiffnessHeavy;
+	animation.numberOfBounces = 3;
+	[self.layer addAnimation:animation forKey:@"moveMonster"];
 }
 
 
