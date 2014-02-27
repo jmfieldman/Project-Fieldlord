@@ -21,7 +21,7 @@ static __strong NSMutableArray *s_monsterArray = nil;
 		[s_monsterArray addObject:[[MonsterInfo alloc] initWithName:@"Foob" description:@"Boof" color:[UIColor blueColor]]];
 		[s_monsterArray addObject:[[MonsterInfo alloc] initWithName:@"Foob" description:@"Boof" color:[UIColor greenColor]]];
 		
-		for (int t = 0; t < 20; t++) {
+		for (int t = 0; t < 30; t++) {
 			UIColor *c = [UIColor colorWithRed:rand()%255/255.0 green:rand()%255/255.0 blue:rand()%255/255.0 alpha:1];
 			[s_monsterArray addObject:[[MonsterInfo alloc] initWithName:@"Foob" description:@"Boof" color:c]];
 		}

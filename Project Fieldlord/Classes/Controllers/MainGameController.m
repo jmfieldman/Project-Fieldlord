@@ -8,7 +8,8 @@
 
 #import "MainGameController.h"
 
-
+#define SCORELABEL_FONT @"Dosis-Regular"
+#define SCORELABEL_SIZE 20
 
 @interface MainGameController ()
 
@@ -33,7 +34,7 @@ SINGLETON_IMPL(MainGameController);
 		_activeMonsters = [NSMutableArray array];
 		
 		/* Create the monster field */
-		_monsterField = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 320, 320)];
+		_monsterField = [[UIView alloc] initWithFrame:CGRectMake(0, ([UIScreen mainScreen].bounds.size.height > 481) ? 44 : 0, 320, 480)];
 		_monsterField.backgroundColor = [UIColor clearColor];
 		[self.view addSubview:_monsterField];
 		
@@ -50,8 +51,42 @@ SINGLETON_IMPL(MainGameController);
 		lab.font = [UIFont fontWithName:@"Dosis-Regular" size:20];
 		[self.view addSubview:lab];
 		 */
+		
+		/* --------- Views --------- */
+		
+		_statsView = [[UIView alloc] initWithFrame:CGRectMake(5, 520, 310, 40)];
+		_statsView.backgroundColor = [UIColor whiteColor];
+		_statsView.layer.cornerRadius = 16;
+		_statsView.layer.borderColor = [UIColor blackColor].CGColor;
+		_statsView.layer.borderWidth = 1.5;
+		_statsView.layer.shadowOpacity = 0.5;
+		_statsView.layer.shadowColor = [UIColor blackColor].CGColor;
+		_statsView.layer.shadowOffset = CGSizeMake(1, 1);
+		_statsView.layer.shadowRadius = 2;
+		_statsView.layer.shouldRasterize = YES;
+		_statsView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+		[self.view addSubview:_statsView];
+		
+		_reticuleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"reticule"]];
+		_reticuleView.frame = CGRectMake(4, 7, 24, 24);
+		[_statsView addSubview:_reticuleView];
+		
+		_shotsLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 7, 200, 24)];
+		_shotsLabel.text = @"0 / 0";
+		_shotsLabel.font = [UIFont fontWithName:SCORELABEL_FONT size:SCORELABEL_SIZE];
+		[_statsView addSubview:_shotsLabel];
+		
+		_scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 7, 133, 24)];
+		_scoreLabel.text = @"0 pts";
+		_scoreLabel.textAlignment = NSTextAlignmentRight;
+		_scoreLabel.font = [UIFont fontWithName:SCORELABEL_FONT size:SCORELABEL_SIZE];
+		[_statsView addSubview:_scoreLabel];
 		 
-		[self setMonsterCountTo:14];
+		[self updateStats];
+		
+		/* --------- Setup level -------- */
+		
+		[self setMonsterCountTo:24];
 		
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
 			[self animateMonstersNewPositions];
@@ -68,6 +103,11 @@ SINGLETON_IMPL(MainGameController);
 		
 	}
 	return self;
+}
+
+- (void) updateStats {
+	_shotsLabel.text = [NSString stringWithFormat:@"%d / %d", [GameState sharedInstance].hitsMade, [GameState sharedInstance].shotsAttempted];
+	_scoreLabel.text = [NSString stringWithFormat:@"%d pts", [GameState sharedInstance].score];
 }
 
 - (float) affinityChance {
@@ -142,14 +182,15 @@ SINGLETON_IMPL(MainGameController);
 		float dist = sqrtf(xdiff * xdiff + ydiff * ydiff);
 		NSLog(@"dist: %f", dist);
 		if (dist < fRadius) {
+			CGSize monsterSize = activeMonster.view.bounds.size;
 			if (fabs(xdiff) < 1) xdiff = 1;
 			if (fabs(ydiff) < 1) ydiff = 1;
 			float fear = fMulti * (fRadius - dist) / fRadius;
 			CGPoint newPoint = CGPointMake(currentMonsterCenter.x + xdiff*fear, currentMonsterCenter.y + ydiff*fear);
-			if (newPoint.x < -10) newPoint.x = -10;
-			if (newPoint.y < -10) newPoint.y = -10;
-			if (newPoint.x > (_monsterField.bounds.size.width  + 10)) newPoint.x = (_monsterField.bounds.size.width  + 10);
-			if (newPoint.y > (_monsterField.bounds.size.height + 10)) newPoint.y = (_monsterField.bounds.size.height + 10);
+			if (newPoint.x < monsterSize.width/2)  newPoint.x = monsterSize.width/2;
+			if (newPoint.y < monsterSize.height/2) newPoint.y = monsterSize.height/2;
+			if (newPoint.x > (_monsterField.bounds.size.width  - monsterSize.width/2))  newPoint.x = (_monsterField.bounds.size.width  - monsterSize.width/2);
+			if (newPoint.y > (_monsterField.bounds.size.height - monsterSize.height/2)) newPoint.y = (_monsterField.bounds.size.height - monsterSize.height/2);
 			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(floatBetween(0, 0.1) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
 				[activeMonster.view animateToNewCenter:newPoint];
 			});
@@ -161,6 +202,10 @@ SINGLETON_IMPL(MainGameController);
 	CGPoint p = [gestureRecognizer locationInView:_gesturePad];
 	NSLog(@"tapped at %f %f", p.x, p.y);
 	[self animateMonstersToAvoidTouchAt:p];
+	
+	if (rand()%3 == 0) [GameState sharedInstance].hitsMade++;
+	[GameState sharedInstance].shotsAttempted++;
+	[self updateStats];
 }
 
 

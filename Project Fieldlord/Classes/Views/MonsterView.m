@@ -24,6 +24,7 @@
 		_bodyView.layer.shadowOffset = CGSizeMake(1, 1);
 		_bodyView.layer.shadowRadius = 2;
 		_bodyView.layer.shouldRasterize = YES;
+		_bodyView.layer.rasterizationScale = [UIScreen mainScreen].scale;
 		_bodyView.alpha = 0.5;
 		[self addSubview:_bodyView];
 		
@@ -179,12 +180,12 @@
 
 - (void) animateBodyBobbleWithDuration:(float)duration {
 	
-	[self.layer addAnimation:_bodyBobbleWideWAnimation forKey:nil];
-	[self.layer addAnimation:_bodyBobbleWideHAnimation forKey:nil];
+	[self.layer addAnimation:_bodyBobbleWideWAnimation forKey:@"bobbleW"];
+	[self.layer addAnimation:_bodyBobbleWideHAnimation forKey:@"bobbleH"];
 	
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
-		[self.layer addAnimation:_bodyBobbleBackWAnimation forKey:nil];
-		[self.layer addAnimation:_bodyBobbleBackHAnimation forKey:nil];
+		[self.layer addAnimation:_bodyBobbleBackWAnimation forKey:@"bobbleW"];
+		[self.layer addAnimation:_bodyBobbleBackHAnimation forKey:@"bobbleH"];
 	});
 	
 }

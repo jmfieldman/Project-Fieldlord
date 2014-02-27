@@ -15,7 +15,7 @@ SINGLETON_INTR(GameState);
 
 @property (nonatomic, assign) int shotsAttempted;
 @property (nonatomic, assign) int hitsMade;
-@property (nonatomic, readonly) double score;
+@property (nonatomic, readonly) int score;
 
 
 @end

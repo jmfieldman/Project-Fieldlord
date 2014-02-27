@@ -8,10 +8,15 @@
 
 #import "GameState.h"
 
+#define SCORE_MULT 100
+
 @implementation GameState
 
 SINGLETON_IMPL(GameState);
 
-
+- (int) score {
+	if (_shotsAttempted == 0) return 0;
+	return (SCORE_MULT * _hitsMade * _hitsMade) / _shotsAttempted;
+}
 
 @end

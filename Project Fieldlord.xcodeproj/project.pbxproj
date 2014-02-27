@@ -32,6 +32,9 @@
 		35E1613E18BCEF8B002962D3 /* MonsterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1613D18BCEF8B002962D3 /* MonsterInfo.m */; };
 		35E1614118BD1123002962D3 /* MathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1614018BD1123002962D3 /* MathHelper.m */; };
 		35E1614618BE3D50002962D3 /* game_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35E1614518BE3D50002962D3 /* game_background@2x.png */; };
+		35F620FB18BFA95500179473 /* game_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F620F818BFA95500179473 /* game_background.png */; };
+		35F620FC18BFA95500179473 /* reticule.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F620F918BFA95500179473 /* reticule.png */; };
+		35F620FD18BFA95500179473 /* reticule@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F620FA18BFA95500179473 /* reticule@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +88,9 @@
 		35E1613F18BD1123002962D3 /* MathHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathHelper.h; sourceTree = "<group>"; };
 		35E1614018BD1123002962D3 /* MathHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MathHelper.m; sourceTree = "<group>"; };
 		35E1614518BE3D50002962D3 /* game_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_background@2x.png"; sourceTree = "<group>"; };
+		35F620F818BFA95500179473 /* game_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_background.png; sourceTree = "<group>"; };
+		35F620F918BFA95500179473 /* reticule.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reticule.png; sourceTree = "<group>"; };
+		35F620FA18BFA95500179473 /* reticule@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reticule@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +274,9 @@
 		35E1614418BE3D50002962D3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				35F620F918BFA95500179473 /* reticule.png */,
+				35F620FA18BFA95500179473 /* reticule@2x.png */,
+				35F620F818BFA95500179473 /* game_background.png */,
 				35E1614518BE3D50002962D3 /* game_background@2x.png */,
 			);
 			path = UI;
@@ -348,9 +357,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35F620FD18BFA95500179473 /* reticule@2x.png in Resources */,
 				35E1614618BE3D50002962D3 /* game_background@2x.png in Resources */,
 				3537D1DE18BBE3700021C8CF /* InfoPlist.strings in Resources */,
+				35F620FC18BFA95500179473 /* reticule.png in Resources */,
 				35E1613818BC33FF002962D3 /* Dosis-Regular.otf in Resources */,
+				35F620FB18BFA95500179473 /* game_background.png in Resources */,
 				3537D1E618BBE3700021C8CF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -20,7 +20,12 @@
 	NSMutableArray *_activeMonsters;
 	
 	/* Views */
-	UIView *_monsterField;
+	UIView   *_monsterField;
+	
+	UIView   *_statsView;
+	UIImageView *_reticuleView;
+	UILabel  *_shotsLabel;
+	UILabel  *_scoreLabel;
 }
 
 @property (nonatomic, readonly) float affinityChance;
@@ -33,5 +38,7 @@ SINGLETON_INTR(MainGameController);
 - (void) setMonsterCountTo:(int)numMonsters;
 - (void) animateMonstersNewPositions;
 - (void) animateMonstersToAvoidTouchAt:(CGPoint)point;
+
+- (void) updateStats;
 
 @end
