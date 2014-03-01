@@ -8,7 +8,8 @@
 
 #import "MainGameController.h"
 
-#define SCORELABEL_FONT @"Dosis-Regular"
+//#define SCORELABEL_FONT @"Dosis-Regular"
+#define SCORELABEL_FONT @"MuseoSansRounded-300"
 #define SCORELABEL_SIZE 20
 
 @interface MainGameController ()
@@ -34,7 +35,7 @@ SINGLETON_IMPL(MainGameController);
 		_activeMonsters = [NSMutableArray array];
 		
 		/* Create the monster field */
-		_monsterField = [[UIView alloc] initWithFrame:CGRectMake(0, ([UIScreen mainScreen].bounds.size.height > 481) ? 44 : 0, 320, 480)];
+		_monsterField = [[UIView alloc] initWithFrame:CGRectMake(0, 60, 320, ([UIScreen mainScreen].bounds.size.height > 481) ? (516-20-40) : (418-20-40))];
 		_monsterField.backgroundColor = [UIColor clearColor];
 		[self.view addSubview:_monsterField];
 		
@@ -54,7 +55,7 @@ SINGLETON_IMPL(MainGameController);
 		
 		/* --------- Views --------- */
 		
-		_statsView = [[UIView alloc] initWithFrame:CGRectMake(5, 520, 310, 40)];
+		_statsView = [[UIView alloc] initWithFrame:CGRectMake(5, self.view.bounds.size.height-48, 310, 40)];
 		_statsView.backgroundColor = [UIColor whiteColor];
 		_statsView.layer.cornerRadius = 16;
 		_statsView.layer.borderColor = [UIColor blackColor].CGColor;
@@ -84,11 +85,78 @@ SINGLETON_IMPL(MainGameController);
 		 
 		[self updateStats];
 		
+		
+		/* Menu buttons */
+		
+		const float buttonScale = 1.0;
+		
+		_helpButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		_helpButton.frame = CGRectMake(280, 20, 40, 40);
+		_helpButton.alpha = 1;
+		[_helpButton addTarget:self action:@selector(pressedHelp:) forControlEvents:UIControlEventTouchUpInside];
+		[self.view addSubview:_helpButton];
+		
+		UIImageView *helpIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_question"]];
+		helpIcon.center = CGPointMake(22,18);
+		helpIcon.alpha = 0.75;
+		[_helpButton addSubview:helpIcon];
+		helpIcon.transform = CGAffineTransformMakeScale(buttonScale, buttonScale);
+		
+		
+		_restartButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		_restartButton.frame = CGRectMake(320-110, 20, 40, 40);
+		_restartButton.alpha = 1;
+		[_restartButton addTarget:self action:@selector(pressedRestart:) forControlEvents:UIControlEventTouchUpInside];
+		[self.view addSubview:_restartButton];
+		
+		UIImageView *restartIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_restart"]];
+		restartIcon.center = CGPointMake(22,18);
+		restartIcon.alpha = 0.75;
+		[_restartButton addSubview:restartIcon];
+		restartIcon.transform = CGAffineTransformMakeScale(buttonScale, buttonScale);
+		
+		
+		_gcButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		_gcButton.frame = CGRectMake(70, 20, 40, 40);
+		_gcButton.alpha = 1;
+		[_gcButton addTarget:self action:@selector(pressedRestart:) forControlEvents:UIControlEventTouchUpInside];
+		[self.view addSubview:_gcButton];
+		
+		UIImageView *gcIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_gc"]];
+		gcIcon.center = CGPointMake(22,18);
+		gcIcon.alpha = 0.75;
+		[_gcButton addSubview:gcIcon];
+		gcIcon.transform = CGAffineTransformMakeScale(buttonScale, buttonScale);
+
+		
+		
+		_muteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		_muteButton.frame = CGRectMake(0, 20, 40, 40);
+		_muteButton.alpha = 1;
+		[_muteButton addTarget:self action:@selector(pressedMute:) forControlEvents:UIControlEventTouchUpInside];
+		[self.view addSubview:_muteButton];
+		
+		UIImageView *muteIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_speaker"]];
+		muteIcon.center = CGPointMake(18,18);
+		muteIcon.alpha = 0.75;
+		[_muteButton addSubview:muteIcon];
+		muteIcon.transform = CGAffineTransformMakeScale(buttonScale, buttonScale);
+		
+		_muteXout = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_xout"]];
+		_muteXout.center = CGPointMake(18,18);
+		_muteXout.alpha = 0.75;
+		[_muteButton addSubview:_muteXout];
+		_muteXout.hidden = [PreloadedSFX isMute] ? NO : YES;
+		_muteXout.transform = CGAffineTransformMakeScale(buttonScale, buttonScale);
+		
+		
+		
 		/* --------- Setup level -------- */
 		
 		[self setMonsterCountTo:24];
+		[self setNewIt];
 		
-		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
 			[self animateMonstersNewPositions];
 		});
 		
@@ -103,6 +171,20 @@ SINGLETON_IMPL(MainGameController);
 		
 	}
 	return self;
+}
+
+- (void) pressedMute:(id)sender {
+	[PreloadedSFX setMute:![PreloadedSFX isMute]];
+	_muteXout.hidden = [PreloadedSFX isMute] ? NO : YES;
+	[PreloadedSFX playSFX:PLSFX_MENUTAP];
+}
+
+- (void) pressedHelp:(id)sender {
+	[PreloadedSFX playSFX:PLSFX_MENUTAP];
+}
+
+- (void) pressedRestart:(id)sender {
+	[PreloadedSFX playSFX:PLSFX_MENUTAP];
 }
 
 - (void) updateStats {
@@ -124,6 +206,10 @@ SINGLETON_IMPL(MainGameController);
 
 - (float) fearMultiplier {
 	return 5;
+}
+
+- (void) setNewIt {
+	_indexIt = rand() % ([_activeMonsters count]);
 }
 
 - (void) setMonsterCountTo:(int)numMonsters {
@@ -201,11 +287,77 @@ SINGLETON_IMPL(MainGameController);
 - (void)handleTapGuesture:(UIGestureRecognizer *)gestureRecognizer {
 	CGPoint p = [gestureRecognizer locationInView:_gesturePad];
 	NSLog(@"tapped at %f %f", p.x, p.y);
-	[self animateMonstersToAvoidTouchAt:p];
 	
-	if (rand()%3 == 0) [GameState sharedInstance].hitsMade++;
+	[self animateTapAtPoint:p];
+	
+	NSArray *monstersTapped = [self monsterIndexesOverlappingPoint:p];
+	BOOL     itTapped = [self doesIndexArrayContainIt:monstersTapped];
+	
+	if (!itTapped) {
+		[self animateMonstersToAvoidTouchAt:p];
+	} else {
+		/* Record hit */
+		[GameState sharedInstance].hitsMade++;
+		
+		/* Scatter */
+		[self animateMonstersNewPositions];
+		
+		/* New it */
+		[self setNewIt];
+	}
+	
+	/* Update stats */
 	[GameState sharedInstance].shotsAttempted++;
 	[self updateStats];
+}
+
+- (NSArray*) monsterIndexesOverlappingPoint:(CGPoint)point {
+	NSMutableArray *monsters = [NSMutableArray array];
+	
+	int i = 0;
+	for (MonsterInfo *activeMonster in _activeMonsters) {
+		CGRect monsterFrame = ((CALayer*)activeMonster.view.layer.presentationLayer).frame;
+		if (CGRectContainsPoint(CGRectInset(monsterFrame, -4, -4), point)) {
+			[monsters addObject:@(i)];
+		}
+		i++;
+	}
+	
+	return monsters;
+}
+
+- (BOOL) doesIndexArrayContainIt:(NSArray*)indexArray {
+	for (NSNumber *n in indexArray) {
+		if ([n intValue] == _indexIt) return YES;
+	}
+	return NO;
+}
+
+
+- (void) animateTapAtPoint:(CGPoint)point {
+	UIView *tapView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+	tapView.center = point;
+	tapView.backgroundColor = [UIColor clearColor];
+	tapView.userInteractionEnabled = NO;
+	tapView.layer.borderWidth = 10;
+	tapView.layer.borderColor = [UIColor colorWithHue:(rand()%256)/256.0 saturation:0.5 brightness:1 alpha:1].CGColor;
+	tapView.layer.cornerRadius = 25;
+	tapView.layer.shouldRasterize = YES;
+	tapView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+	
+	tapView.transform = CGAffineTransformMakeScale(0.1, 0.1);
+	const float duration = 0.35;
+	[UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+		tapView.transform = CGAffineTransformIdentity;
+		tapView.alpha = 0;
+	} completion:nil];
+	
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
+		[tapView removeFromSuperview];
+	});
+
+	
+	[_monsterField addSubview:tapView];
 }
 
 

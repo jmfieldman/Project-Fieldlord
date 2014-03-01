@@ -26,6 +26,17 @@
 	UIImageView *_reticuleView;
 	UILabel  *_shotsLabel;
 	UILabel  *_scoreLabel;
+	
+	/* Buttons */
+	UIButton *_muteButton;
+	UIImageView *_muteXout;
+	UIButton *_helpButton;
+	UIButton *_gcButton;
+	UIButton *_shotgunButton;
+	UIButton *_restartButton;
+	
+	/* Who's it? */
+	int       _indexIt;
 }
 
 @property (nonatomic, readonly) float affinityChance;
