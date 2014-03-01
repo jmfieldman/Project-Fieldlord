@@ -27,7 +27,9 @@
 	UILabel  *_shotsLabel;
 	UILabel  *_scoreLabel;
 	
-	/* Buttons */
+	/* Menu */
+	UIView   *_menuView;
+	
 	UIButton *_muteButton;
 	UIImageView *_muteXout;
 	

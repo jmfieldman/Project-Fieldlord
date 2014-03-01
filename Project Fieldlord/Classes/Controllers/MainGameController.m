@@ -36,7 +36,7 @@ SINGLETON_IMPL(MainGameController);
 		_activeMonsters = [NSMutableArray array];
 		
 		/* Create the monster field */
-		_monsterField = [[UIView alloc] initWithFrame:CGRectMake(0, 60, 320, ([UIScreen mainScreen].bounds.size.height > 481) ? (516-20-40) : (418-20-40))];
+		_monsterField = [[UIView alloc] initWithFrame:CGRectMake(0, 66, 320, ([UIScreen mainScreen].bounds.size.height > 481) ? (516-20-40) : (418-20-40))];
 		_monsterField.backgroundColor = [UIColor clearColor];
 		[self.view addSubview:_monsterField];
 		
@@ -56,17 +56,21 @@ SINGLETON_IMPL(MainGameController);
 		
 		/* --------- Views --------- */
 		
-		_statsView = [[UIView alloc] initWithFrame:CGRectMake(5, self.view.bounds.size.height-48, 310, 40)];
-		_statsView.backgroundColor = [UIColor whiteColor];
+		//_statsView = [[UIView alloc] initWithFrame:CGRectMake(5, self.view.bounds.size.height-48, 310, 40)];
+		_statsView = [[UIView alloc] initWithFrame:CGRectMake(5, 20, 310, 40)];
+		_statsView.backgroundColor = [UIColor clearColor];
+		#if 1
+		_statsView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.95];
 		_statsView.layer.cornerRadius = 16;
-		_statsView.layer.borderColor = [UIColor blackColor].CGColor;
-		_statsView.layer.borderWidth = 1.5;
+		_statsView.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.75].CGColor;
+		_statsView.layer.borderWidth = 1.0;
 		_statsView.layer.shadowOpacity = 0.5;
 		_statsView.layer.shadowColor = [UIColor blackColor].CGColor;
 		_statsView.layer.shadowOffset = CGSizeMake(1, 1);
 		_statsView.layer.shadowRadius = 2;
 		_statsView.layer.shouldRasterize = YES;
 		_statsView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+		#endif
 		[self.view addSubview:_statsView];
 		
 		_reticuleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"reticule"]];
@@ -89,13 +93,16 @@ SINGLETON_IMPL(MainGameController);
 		
 		/* Menu buttons */
 		
+		_menuView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height-40, 320, 40)];
+		[self.view addSubview:_menuView];
+		
 		const float buttonScale = 1.0;
 		
 		_helpButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		_helpButton.frame = CGRectMake(280, 20, 40, 40);
+		_helpButton.frame = CGRectMake(280, 0, 40, 40);
 		_helpButton.alpha = 1;
 		[_helpButton addTarget:self action:@selector(pressedHelp:) forControlEvents:UIControlEventTouchUpInside];
-		[self.view addSubview:_helpButton];
+		[_menuView addSubview:_helpButton];
 		
 		UIImageView *helpIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_question"]];
 		helpIcon.center = CGPointMake(22,18);
@@ -105,10 +112,10 @@ SINGLETON_IMPL(MainGameController);
 		
 		
 		_restartButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		_restartButton.frame = CGRectMake(320-110, 20, 40, 40);
+		_restartButton.frame = CGRectMake(320-110, 0, 40, 40);
 		_restartButton.alpha = 1;
 		[_restartButton addTarget:self action:@selector(pressedRestart:) forControlEvents:UIControlEventTouchUpInside];
-		[self.view addSubview:_restartButton];
+		[_menuView addSubview:_restartButton];
 		
 		UIImageView *restartIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_restart"]];
 		restartIcon.center = CGPointMake(22,18);
@@ -118,10 +125,10 @@ SINGLETON_IMPL(MainGameController);
 		
 		
 		_gcButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		_gcButton.frame = CGRectMake(70, 20, 40, 40);
+		_gcButton.frame = CGRectMake(70, 0, 40, 40);
 		_gcButton.alpha = 1;
 		[_gcButton addTarget:self action:@selector(pressedGamecenter:) forControlEvents:UIControlEventTouchUpInside];
-		[self.view addSubview:_gcButton];
+		[_menuView addSubview:_gcButton];
 		
 		UIImageView *gcIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_gc"]];
 		gcIcon.center = CGPointMake(22,18);
@@ -132,10 +139,10 @@ SINGLETON_IMPL(MainGameController);
 		
 		
 		_shotgunButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		_shotgunButton.frame = CGRectMake(140, 20, 40, 40);
+		_shotgunButton.frame = CGRectMake(140, 0, 40, 40);
 		_shotgunButton.alpha = 1;
 		[_shotgunButton addTarget:self action:@selector(pressedShotgun:) forControlEvents:UIControlEventTouchUpInside];
-		[self.view addSubview:_shotgunButton];
+		[_menuView addSubview:_shotgunButton];
 		
 		_shotgunRingLayer = [CALayer layer];
 		_shotgunRingLayer.frame = CGRectMake(0, 0, 28, 28);
@@ -162,10 +169,10 @@ SINGLETON_IMPL(MainGameController);
 		
 		
 		_muteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		_muteButton.frame = CGRectMake(0, 20, 40, 40);
+		_muteButton.frame = CGRectMake(0, 0, 40, 40);
 		_muteButton.alpha = 1;
 		[_muteButton addTarget:self action:@selector(pressedMute:) forControlEvents:UIControlEventTouchUpInside];
-		[self.view addSubview:_muteButton];
+		[_menuView addSubview:_muteButton];
 		
 		UIImageView *muteIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_speaker"]];
 		muteIcon.center = CGPointMake(18,18);
