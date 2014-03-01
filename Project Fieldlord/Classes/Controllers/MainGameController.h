@@ -30,10 +30,14 @@
 	/* Buttons */
 	UIButton *_muteButton;
 	UIImageView *_muteXout;
+	
 	UIButton *_helpButton;
 	UIButton *_gcButton;
-	UIButton *_shotgunButton;
 	UIButton *_restartButton;
+	
+	UIButton *_shotgunButton;
+	CALayer  *_shotgunRingLayer;
+	UILabel  *_shotgunCountLabel;
 	
 	/* Who's it? */
 	int       _indexIt;

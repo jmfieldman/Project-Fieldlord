@@ -10,6 +10,7 @@
 
 //#define SCORELABEL_FONT @"Dosis-Regular"
 #define SCORELABEL_FONT @"MuseoSansRounded-300"
+#define GUNLABEL_FONT   @"MuseoSansRounded-700"
 #define SCORELABEL_SIZE 20
 
 @interface MainGameController ()
@@ -119,7 +120,7 @@ SINGLETON_IMPL(MainGameController);
 		_gcButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		_gcButton.frame = CGRectMake(70, 20, 40, 40);
 		_gcButton.alpha = 1;
-		[_gcButton addTarget:self action:@selector(pressedRestart:) forControlEvents:UIControlEventTouchUpInside];
+		[_gcButton addTarget:self action:@selector(pressedGamecenter:) forControlEvents:UIControlEventTouchUpInside];
 		[self.view addSubview:_gcButton];
 		
 		UIImageView *gcIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_gc"]];
@@ -128,6 +129,36 @@ SINGLETON_IMPL(MainGameController);
 		[_gcButton addSubview:gcIcon];
 		gcIcon.transform = CGAffineTransformMakeScale(buttonScale, buttonScale);
 
+		
+		
+		_shotgunButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		_shotgunButton.frame = CGRectMake(140, 20, 40, 40);
+		_shotgunButton.alpha = 1;
+		[_shotgunButton addTarget:self action:@selector(pressedShotgun:) forControlEvents:UIControlEventTouchUpInside];
+		[self.view addSubview:_shotgunButton];
+		
+		_shotgunRingLayer = [CALayer layer];
+		_shotgunRingLayer.frame = CGRectMake(0, 0, 28, 28);
+		_shotgunRingLayer.position = CGPointMake(22,18);
+		_shotgunRingLayer.opacity = 0.75;
+		_shotgunRingLayer.backgroundColor = [UIColor clearColor].CGColor;
+		_shotgunRingLayer.cornerRadius = 14;
+		_shotgunRingLayer.borderColor = [UIColor colorWithHue:193/360.0 saturation:0.31 brightness:0.85 alpha:1].CGColor;
+		_shotgunRingLayer.borderWidth = 4;
+		_shotgunRingLayer.shadowColor = [UIColor colorWithHue:0/360.0 saturation:0.51 brightness:1 alpha:1].CGColor;
+		_shotgunRingLayer.shadowOffset = CGSizeMake(0, 0);
+		_shotgunRingLayer.shadowOpacity = 0;
+		_shotgunRingLayer.shadowRadius = 1;
+		_shotgunRingLayer.rasterizationScale = [UIScreen mainScreen].scale;
+		_shotgunRingLayer.shouldRasterize = YES;
+		[_shotgunButton.layer addSublayer:_shotgunRingLayer];
+
+		_shotgunCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(-40, 0, 120, 40)];
+		_shotgunCountLabel.center = CGPointMake(22,18);
+		_shotgunCountLabel.text = @"0";
+		_shotgunCountLabel.textAlignment = NSTextAlignmentCenter;
+		_shotgunCountLabel.font = [UIFont fontWithName:GUNLABEL_FONT size:10];
+		[_shotgunButton addSubview:_shotgunCountLabel];
 		
 		
 		_muteButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -185,6 +216,29 @@ SINGLETON_IMPL(MainGameController);
 
 - (void) pressedRestart:(id)sender {
 	[PreloadedSFX playSFX:PLSFX_MENUTAP];
+}
+
+- (void) pressedGamecenter:(id)sender {
+	[PreloadedSFX playSFX:PLSFX_MENUTAP];
+}
+
+- (void) pressedShotgun:(id)sender {
+	[PreloadedSFX playSFX:PLSFX_MENUTAP];
+}
+
+- (void) armShotgun:(BOOL)arm {
+	if (arm) {
+		_shotgunRingLayer.borderWidth = 6;
+		_shotgunRingLayer.transform = CATransform3DMakeScale(1.5, 1.5, 1);
+		_shotgunRingLayer.borderColor = [UIColor colorWithHue:0/360.0 saturation:0.31 brightness:0.85 alpha:1].CGColor;
+		_shotgunRingLayer.shadowOpacity = 1;
+
+	} else {
+		_shotgunRingLayer.borderWidth = 4;
+		_shotgunRingLayer.transform = CATransform3DIdentity;
+		_shotgunRingLayer.borderColor = [UIColor colorWithHue:193/360.0 saturation:0.31 brightness:0.85 alpha:1].CGColor;
+		_shotgunRingLayer.shadowOpacity = 0;
+	}
 }
 
 - (void) updateStats {
