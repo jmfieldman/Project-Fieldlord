@@ -8,7 +8,7 @@
 
 #import "GameState.h"
 
-#define SCORE_MULT 100
+#define SCORE_MULT 20
 
 @implementation GameState
 
