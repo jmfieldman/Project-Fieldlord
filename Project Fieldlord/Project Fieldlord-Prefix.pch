@@ -13,6 +13,7 @@
 #ifdef __OBJC__
 	#import <UIKit/UIKit.h>
 	#import <Foundation/Foundation.h>
+	#import <AVFoundation/AVFoundation.h>
 
 	#import "EXDebug.h"
 	#import "EXRemoteLog.h"
@@ -21,4 +22,5 @@
 	#import "SingletonHelper.h"
 	#import "SKBounceAnimation.h"
 	#import "MathHelper.h"
+	#import "PreloadedSFX.h"
 #endif
