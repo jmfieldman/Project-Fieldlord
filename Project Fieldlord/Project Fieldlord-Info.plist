@@ -31,9 +31,9 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Dosis-Regular.otf</string>
-		<string>MuseoSansRounded-300</string>
-		<string>MuseoSansRounded-500</string>
-		<string>MuseoSansRounded-700</string>
+		<string>MuseoSansRounded-300.otf</string>
+		<string>MuseoSansRounded-500.otf</string>
+		<string>MuseoSansRounded-700.otf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
