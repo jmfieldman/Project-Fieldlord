@@ -288,7 +288,10 @@ SINGLETON_IMPL(MainGameController);
 	CGPoint p = [gestureRecognizer locationInView:_gesturePad];
 	NSLog(@"tapped at %f %f", p.x, p.y);
 	
+	/* I don't like this effect */
+	#if 0
 	[self animateTapAtPoint:p];
+	#endif
 	
 	NSArray *monstersTapped = [self monsterIndexesOverlappingPoint:p];
 	BOOL     itTapped = [self doesIndexArrayContainIt:monstersTapped];
