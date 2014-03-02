@@ -19,6 +19,9 @@
 	/* Active monsters */
 	NSMutableArray *_activeMonsters;
 	
+	/* If this is non-zero, don't animate this monster */
+	int _dontAnimateIndex;
+	
 	/* Views */
 	UIView   *_monsterField;
 	

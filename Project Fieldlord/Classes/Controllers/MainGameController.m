@@ -28,6 +28,8 @@ SINGLETON_IMPL(MainGameController);
 		self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
 		self.view.backgroundColor = [UIColor whiteColor];
 		
+		_dontAnimateIndex = -1;
+		
 		/* Add background */
 		UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"game_background"]];
 		[self.view addSubview:background];
@@ -296,8 +298,15 @@ SINGLETON_IMPL(MainGameController);
 - (void) animateMonstersNewPositions {
 	int i = 0;
 	for (MonsterInfo *activeMonster in _activeMonsters) {
+		/* Ugly hack to not animate the it monster */
+		if (_dontAnimateIndex == i) { i++; continue; }
+		
 		CGPoint center = [self newRandomCenterForActiveMonsterAtIndex:i];
-		[activeMonster.view animateToNewCenter:center];
+		
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(floatBetween(0, 0.5) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
+			[activeMonster.view animateToNewCenter:center];
+		});
+		
 		i++;
 	}
 }
@@ -327,7 +336,7 @@ SINGLETON_IMPL(MainGameController);
 		float xdiff = currentMonsterCenter.x - point.x;
 		float ydiff = currentMonsterCenter.y - point.y;
 		float dist = sqrtf(xdiff * xdiff + ydiff * ydiff);
-		NSLog(@"dist: %f", dist);
+		//NSLog(@"dist: %f", dist);
 		if (dist < fRadius) {
 			CGSize monsterSize = activeMonster.view.bounds.size;
 			if (fabs(xdiff) < 1) xdiff = 1;
@@ -347,7 +356,7 @@ SINGLETON_IMPL(MainGameController);
 
 - (void)handleTapGuesture:(UIGestureRecognizer *)gestureRecognizer {
 	CGPoint p = [gestureRecognizer locationInView:_gesturePad];
-	NSLog(@"tapped at %f %f", p.x, p.y);
+	//NSLog(@"tapped at %f %f", p.x, p.y);
 	
 	/* I don't like this effect */
 	#if 0
@@ -364,7 +373,12 @@ SINGLETON_IMPL(MainGameController);
 		[GameState sharedInstance].hitsMade++;
 		
 		/* Scatter */
+		_dontAnimateIndex = _indexIt;
 		[self animateMonstersNewPositions];
+		_dontAnimateIndex = -1;
+		
+		/* Present it */
+		[self animateIt];
 		
 		/* New it */
 		[self setNewIt];
@@ -422,6 +436,39 @@ SINGLETON_IMPL(MainGameController);
 
 	
 	[_monsterField addSubview:tapView];
+}
+
+- (void) animateIt {
+	MonsterInfo *monster = _activeMonsters[_indexIt];
+	CGPoint curCenter = ((CALayer*)monster.view.layer.presentationLayer).position;
+	CGPoint newCenter = [self newRandomCenterForActiveMonsterAtIndex:_indexIt];
+	
+	//NSLog(@"moving: %.0f %.0f %.0f %.0f", curCenter.x, curCenter.y, newCenter.x, newCenter.y);
+	
+	monster.view.center = curCenter;
+	[monster.view.layer removeAnimationForKey:@"moveMonster"];
+	
+	//dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
+	//	[monster.view.layer removeAnimationForKey:@"moveMonster"];
+	//});
+	
+	const float zoom_duration = 0.6;
+	
+	_monsterField.userInteractionEnabled = NO;
+	[_monsterField bringSubviewToFront:monster.view];
+	[_monsterField bringSubviewToFront:_gesturePad];
+	[UIView animateWithDuration:zoom_duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+		monster.view.center = CGPointMake(curCenter.x+(newCenter.x-curCenter.x)/2, curCenter.y+(newCenter.y-curCenter.y)/2);
+		monster.view.transform = CGAffineTransformScale(CGAffineTransformMakeRotation(floatBetween(-0.1, 0.1)*M_PI), 3, 3);
+	} completion:^(BOOL finished) {
+		[UIView animateWithDuration:zoom_duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+			monster.view.transform = CGAffineTransformIdentity;
+			monster.view.center = newCenter;
+		} completion:^(BOOL finished) {
+			_monsterField.userInteractionEnabled = YES;
+		}];
+	}];
+	
 }
 
 
