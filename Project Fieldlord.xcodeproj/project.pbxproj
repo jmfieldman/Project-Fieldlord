@@ -36,6 +36,7 @@
 		357CF1D818C2778E005D3989 /* MuseoSansRounded-300.otf in Resources */ = {isa = PBXBuildFile; fileRef = 357CF1D518C2778E005D3989 /* MuseoSansRounded-300.otf */; };
 		357CF1D918C2778E005D3989 /* MuseoSansRounded-500.otf in Resources */ = {isa = PBXBuildFile; fileRef = 357CF1D618C2778E005D3989 /* MuseoSansRounded-500.otf */; };
 		357CF1DA18C2778E005D3989 /* MuseoSansRounded-700.otf in Resources */ = {isa = PBXBuildFile; fileRef = 357CF1D718C2778E005D3989 /* MuseoSansRounded-700.otf */; };
+		357CF1DD18C3A38B005D3989 /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 357CF1DC18C3A38B005D3989 /* HelpView.m */; };
 		35E1612818BBE5C2002962D3 /* EXDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1611E18BBE5C2002962D3 /* EXDebug.m */; };
 		35E1612918BBE5C2002962D3 /* PersistentDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1611F18BBE5C2002962D3 /* PersistentDictionary.m */; };
 		35E1612A18BBE5C2002962D3 /* SKBounceAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1612118BBE5C2002962D3 /* SKBounceAnimation.m */; };
@@ -99,6 +100,8 @@
 		357CF1D518C2778E005D3989 /* MuseoSansRounded-300.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSansRounded-300.otf"; sourceTree = "<group>"; };
 		357CF1D618C2778E005D3989 /* MuseoSansRounded-500.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSansRounded-500.otf"; sourceTree = "<group>"; };
 		357CF1D718C2778E005D3989 /* MuseoSansRounded-700.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSansRounded-700.otf"; sourceTree = "<group>"; };
+		357CF1DB18C3A38B005D3989 /* HelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
+		357CF1DC18C3A38B005D3989 /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
 		35E1611E18BBE5C2002962D3 /* EXDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXDebug.m; sourceTree = "<group>"; };
 		35E1611F18BBE5C2002962D3 /* PersistentDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentDictionary.m; sourceTree = "<group>"; };
 		35E1612018BBE5C2002962D3 /* SKBounceAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBounceAnimation.h; sourceTree = "<group>"; };
@@ -256,6 +259,8 @@
 			children = (
 				35E1613318BBE838002962D3 /* MonsterView.h */,
 				35E1613418BBE838002962D3 /* MonsterView.m */,
+				357CF1DB18C3A38B005D3989 /* HelpView.h */,
+				357CF1DC18C3A38B005D3989 /* HelpView.m */,
 			);
 			name = Views;
 			path = Classes/Views;
@@ -468,6 +473,7 @@
 				35E1613B18BCECF4002962D3 /* GameState.m in Sources */,
 				357CF1CE18C26B79005D3989 /* PreloadedSFX.m in Sources */,
 				35E1612918BBE5C2002962D3 /* PersistentDictionary.m in Sources */,
+				357CF1DD18C3A38B005D3989 /* HelpView.m in Sources */,
 				3537D1E418BBE3700021C8CF /* AppDelegate.m in Sources */,
 				3537D1E018BBE3700021C8CF /* main.m in Sources */,
 				35E1612C18BBE5C2002962D3 /* SingletonHelper.m in Sources */,
