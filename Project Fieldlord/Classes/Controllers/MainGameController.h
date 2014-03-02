@@ -22,6 +22,9 @@
 	/* If this is non-zero, don't animate this monster */
 	int _dontAnimateIndex;
 	
+	/* Shotgun */
+	BOOL _shotgunArmed;
+	
 	/* Views */
 	UIView   *_monsterField;
 	

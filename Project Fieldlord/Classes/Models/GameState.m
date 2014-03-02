@@ -14,6 +14,13 @@
 
 SINGLETON_IMPL(GameState);
 
+- (id) init {
+	if ((self = [super init])) {
+		_shotgunsLeft = 10;
+	}
+	return self;
+}
+
 - (int) score {
 	if (_shotsAttempted == 0) return 0;
 	return (SCORE_MULT * _hitsMade * _hitsMade) / _shotsAttempted;

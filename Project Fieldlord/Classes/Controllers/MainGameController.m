@@ -90,7 +90,6 @@ SINGLETON_IMPL(MainGameController);
 		_scoreLabel.font = [UIFont fontWithName:SCORELABEL_FONT size:SCORELABEL_SIZE];
 		[_statsView addSubview:_scoreLabel];
 		 
-		[self updateStats];
 		
 		
 		/* Menu buttons */
@@ -209,6 +208,7 @@ SINGLETON_IMPL(MainGameController);
 		UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGuesture:)];
 		[_gesturePad addGestureRecognizer:recognizer];
 		
+		[self updateStats];
 	}
 	return self;
 }
@@ -233,9 +233,19 @@ SINGLETON_IMPL(MainGameController);
 
 - (void) pressedShotgun:(id)sender {
 	[PreloadedSFX playSFX:PLSFX_MENUTAP];
+	
+	if ([GameState sharedInstance].shotgunsLeft > 0) {
+	
+		[self armShotgun:!_shotgunArmed];
+		
+	} else {
+		
+	}
+	
 }
 
 - (void) armShotgun:(BOOL)arm {
+	_shotgunArmed = arm;
 	if (arm) {
 		_shotgunRingLayer.borderWidth = 6;
 		_shotgunRingLayer.transform = CATransform3DMakeScale(1.5, 1.5, 1);
@@ -253,6 +263,7 @@ SINGLETON_IMPL(MainGameController);
 - (void) updateStats {
 	_shotsLabel.text = [NSString stringWithFormat:@"%d / %d", [GameState sharedInstance].hitsMade, [GameState sharedInstance].shotsAttempted];
 	_scoreLabel.text = [NSString stringWithFormat:@"%d pts", [GameState sharedInstance].score];
+	_shotgunCountLabel.text = [NSString stringWithFormat:@"%d", [GameState sharedInstance].shotgunsLeft];
 }
 
 - (float) affinityChance {
@@ -331,6 +342,11 @@ SINGLETON_IMPL(MainGameController);
 	float fRadius = self.fearRadius;
 	float fMulti  = self.fearMultiplier;
 	
+	if (_shotgunArmed) {
+		fRadius *= 3;
+		fMulti *= 1;
+	}
+	
 	for (MonsterInfo *activeMonster in _activeMonsters) {
 		CGPoint currentMonsterCenter = ((CALayer*)activeMonster.view.layer.presentationLayer).position;
 		float xdiff = currentMonsterCenter.x - point.x;
@@ -384,6 +400,13 @@ SINGLETON_IMPL(MainGameController);
 		[self setNewIt];
 	}
 	
+	/* Shotgun? */
+	if (_shotgunArmed) {
+		[self animateShotgunAtPoint:p];
+		[self armShotgun:NO];
+		[GameState sharedInstance].shotgunsLeft--;
+	}
+	
 	/* Update stats */
 	[GameState sharedInstance].shotsAttempted++;
 	[self updateStats];
@@ -392,10 +415,12 @@ SINGLETON_IMPL(MainGameController);
 - (NSArray*) monsterIndexesOverlappingPoint:(CGPoint)point {
 	NSMutableArray *monsters = [NSMutableArray array];
 	
+	int radius = _shotgunArmed ? -60 : -4;
+	
 	int i = 0;
 	for (MonsterInfo *activeMonster in _activeMonsters) {
 		CGRect monsterFrame = ((CALayer*)activeMonster.view.layer.presentationLayer).frame;
-		if (CGRectContainsPoint(CGRectInset(monsterFrame, -4, -4), point)) {
+		if (CGRectContainsPoint(CGRectInset(monsterFrame, radius, radius), point)) {
 			[monsters addObject:@(i)];
 		}
 		i++;
@@ -412,25 +437,29 @@ SINGLETON_IMPL(MainGameController);
 }
 
 
-- (void) animateTapAtPoint:(CGPoint)point {
-	UIView *tapView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+- (void) animateShotgunAtPoint:(CGPoint)point {
+	UIView *tapView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 140, 140)];
 	tapView.center = point;
 	tapView.backgroundColor = [UIColor clearColor];
 	tapView.userInteractionEnabled = NO;
-	tapView.layer.borderWidth = 10;
-	tapView.layer.borderColor = [UIColor colorWithHue:(rand()%256)/256.0 saturation:0.5 brightness:1 alpha:1].CGColor;
-	tapView.layer.cornerRadius = 25;
+	tapView.layer.borderWidth = 30;
+	tapView.layer.borderColor = [UIColor colorWithHue:(0)/256.0 saturation:0.5 brightness:1 alpha:1].CGColor;
+	tapView.layer.cornerRadius = 70;
+	tapView.layer.shadowColor = [UIColor colorWithHue:0/360.0 saturation:0.51 brightness:1 alpha:1].CGColor;
+	tapView.layer.shadowOffset = CGSizeMake(0, 0);
+	tapView.layer.shadowOpacity = 0;
+	tapView.layer.shadowRadius = 5;
 	tapView.layer.shouldRasterize = YES;
 	tapView.layer.rasterizationScale = [UIScreen mainScreen].scale;
 	
 	tapView.transform = CGAffineTransformMakeScale(0.1, 0.1);
-	const float duration = 0.35;
-	[UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+	const float duration = 0.3;
+	[UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
 		tapView.transform = CGAffineTransformIdentity;
 		tapView.alpha = 0;
 	} completion:nil];
 	
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((duration+0.2) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
 		[tapView removeFromSuperview];
 	});
 
