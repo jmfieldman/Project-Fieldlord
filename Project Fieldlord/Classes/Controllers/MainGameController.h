@@ -10,6 +10,7 @@
 #import "MonsterView.h"
 #import "MonsterInfo.h"
 #import "GameState.h"
+#import "HelpView.h"
 
 @interface MainGameController : UIViewController <UIGestureRecognizerDelegate> {
 
@@ -46,6 +47,8 @@
 	UIButton *_shotgunButton;
 	CALayer  *_shotgunRingLayer;
 	UILabel  *_shotgunCountLabel;
+	
+	HelpView *_helpView;
 	
 	/* Who's it? */
 	int       _indexIt;

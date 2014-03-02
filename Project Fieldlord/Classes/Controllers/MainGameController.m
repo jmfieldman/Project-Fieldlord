@@ -236,6 +236,13 @@ SINGLETON_IMPL(MainGameController);
 		[_gesturePad addGestureRecognizer:recognizer];
 		
 		[self updateStats];
+		
+		
+		/* -- Help on top -- */
+		_helpView = [[HelpView alloc] initWithFrame:self.view.bounds];
+		_helpView.alpha = 0;
+		_helpView.userInteractionEnabled = NO;
+		[self.view addSubview:_helpView];
 	}
 	return self;
 }
@@ -248,6 +255,8 @@ SINGLETON_IMPL(MainGameController);
 
 - (void) pressedHelp:(id)sender {
 	[PreloadedSFX playSFX:PLSFX_MENUTAP];
+	
+	[_helpView animateIn];
 }
 
 - (void) pressedRestart:(id)sender {
