@@ -118,7 +118,7 @@
 	animation.numberOfBounces = 3;
 	[self.layer addAnimation:animation forKey:@"moveMonster"];
 	
-	[self animateBodyBobbleWithDuration:animation.duration * 0.25];
+	[self animateBodyBobbleWithDuration:animation.duration * 0.20];
 }
 
 
