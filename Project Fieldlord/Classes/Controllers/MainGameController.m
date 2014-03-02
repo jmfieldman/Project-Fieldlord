@@ -38,7 +38,7 @@ SINGLETON_IMPL(MainGameController);
 		_activeMonsters = [NSMutableArray array];
 		
 		/* Create the monster field */
-		_monsterField = [[UIView alloc] initWithFrame:CGRectMake(0, 66, 320, ([UIScreen mainScreen].bounds.size.height > 481) ? (516-20-40) : (418-20-40))];
+		_monsterField = [[UIView alloc] initWithFrame:CGRectMake(0, 66, 320, ([UIScreen mainScreen].bounds.size.height > 481) ? (516-20-40) : (426-20-40))];
 		_monsterField.backgroundColor = [UIColor clearColor];
 		[self.view addSubview:_monsterField];
 		
@@ -476,6 +476,9 @@ SINGLETON_IMPL(MainGameController);
 	
 	monster.view.center = curCenter;
 	[monster.view.layer removeAnimationForKey:@"moveMonster"];
+	[monster.view.layer removeAnimationForKey:@"bobbleW"];
+	[monster.view.layer removeAnimationForKey:@"bobbleH"];
+	
 	
 	//dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
 	//	[monster.view.layer removeAnimationForKey:@"moveMonster"];
