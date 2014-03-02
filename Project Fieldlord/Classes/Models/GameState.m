@@ -21,7 +21,7 @@ SINGLETON_IMPL(GameState);
 	return self;
 }
 
-- (int) score {
+- (int64_t) score {
 	if (_shotsAttempted == 0) return 0;
 	return (SCORE_MULT * _hitsMade * _hitsMade) / _shotsAttempted;
 }

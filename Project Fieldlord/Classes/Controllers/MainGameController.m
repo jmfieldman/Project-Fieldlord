@@ -261,8 +261,8 @@ SINGLETON_IMPL(MainGameController);
 }
 
 - (void) updateStats {
-	_shotsLabel.text = [NSString stringWithFormat:@"%d / %d", [GameState sharedInstance].hitsMade, [GameState sharedInstance].shotsAttempted];
-	_scoreLabel.text = [NSString stringWithFormat:@"%d pts", [GameState sharedInstance].score];
+	_shotsLabel.text = [NSString stringWithFormat:@"%lld / %lld", [GameState sharedInstance].hitsMade, [GameState sharedInstance].shotsAttempted];
+	_scoreLabel.text = [NSString stringWithFormat:@"%lld pts", [GameState sharedInstance].score];
 	_shotgunCountLabel.text = [NSString stringWithFormat:@"%d", [GameState sharedInstance].shotgunsLeft];
 }
 
