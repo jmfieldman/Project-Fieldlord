@@ -192,12 +192,39 @@ SINGLETON_IMPL(MainGameController);
 		
 		/* --------- Setup level -------- */
 		
-		[self setMonsterCountTo:24];
-		[self setNewIt];
+		/* This is grossly incompetent */
 		
-		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
-			[self animateMonstersNewPositions];
-		});
+		NSArray *positions = [[GameState sharedInstance] loadState];
+		if (positions) {
+			
+			NSLog(@"loading");
+			
+			int i = 0;
+			for (NSDictionary *mDic in positions) {
+				MonsterInfo *mi = [MonsterInfo monsterAtIndex:i];
+				mi.active = [mDic[@"active"] intValue];
+								
+				if (mi.active) {
+					[_activeMonsters addObject:mi];
+					double ang = (rand()%360) * M_PI / 180.0 ;
+					mi.view.center = CGPointMake( _monsterField.bounds.size.width/2 + 480*cos(ang), _monsterField.bounds.size.height/2 + 480*sin(ang) );
+					CGPoint center = CGPointMake([mDic[@"x"] floatValue], [mDic[@"y"] floatValue]);
+					dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(floatBetween(0, 0.5) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
+						[mi.view animateToNewCenter:center];
+					});
+				}
+				
+				i++;
+			}
+			
+		} else {
+			[self setMonsterCountTo:self.monstersForScore];
+					
+			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
+				[self animateMonstersNewPositions];
+			});
+		}
+		[self setNewIt];
 		
 		
 		/* Add guesture pad last */
@@ -225,6 +252,7 @@ SINGLETON_IMPL(MainGameController);
 
 - (void) pressedRestart:(id)sender {
 	[PreloadedSFX playSFX:PLSFX_MENUTAP];
+	[[[UIAlertView alloc] initWithTitle:@"Restart Game?" message:@"Are you sure you want to restart?  This will reset your hit/attempt record and power shot inventory." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Reset", nil] show];
 }
 
 - (void) pressedGamecenter:(id)sender {
@@ -242,6 +270,21 @@ SINGLETON_IMPL(MainGameController);
 		
 	}
 	
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex != alertView.cancelButtonIndex) [self doRestart];
+}
+
+- (void) doRestart {
+	[GameState sharedInstance].hitsMade = 0;
+	[GameState sharedInstance].shotsAttempted = 0;
+	[GameState sharedInstance].shotgunsLeft = DEFAULT_SHOTGUNS;
+	
+	[self animateMonstersNewPositions];
+	[self setNewIt];
+	
+	[self updateStats];
 }
 
 - (void) armShotgun:(BOOL)arm {
@@ -266,12 +309,17 @@ SINGLETON_IMPL(MainGameController);
 	_shotgunCountLabel.text = [NSString stringWithFormat:@"%d", [GameState sharedInstance].shotgunsLeft];
 }
 
+- (int) it { return _indexIt; }
+
 - (float) affinityChance {
-	return 0.5;
+	float rating = (1000.0 - [GameState sharedInstance].score) / 1000.0;
+	if (rating < 0) rating = 0;
+	if (rating > 1) rating = 1;
+	return 0.5 * rating;
 }
 
 - (float) affinityStrength {
-	return 0.5;
+	return self.affinityChance;
 }
 
 - (float) fearRadius {
@@ -282,12 +330,25 @@ SINGLETON_IMPL(MainGameController);
 	return 5;
 }
 
+- (int) monstersForScore {
+	return NUM_MONSTERS;
+	#if 0
+	float rating = [GameState sharedInstance].score / 1000.0;
+	if (rating < 0) rating = 0;
+	if (rating > 1) rating = 1;
+	return (int)(12 + 12*rating);
+	#endif
+	
+	float rad = M_PI / 100.0 * [GameState sharedInstance].score - (M_PI/4);
+	return (int)(12 + 12 * sin(rad));
+}
+
 - (void) setNewIt {
 	_indexIt = rand() % ([_activeMonsters count]);
 }
 
 - (void) setMonsterCountTo:(int)numMonsters {
-	
+	EXLog(ANY, DBG, @"Changing count to %d", numMonsters);
 	if ([_activeMonsters count] < numMonsters) {
 		for (int i = [_activeMonsters count]; i < numMonsters; i++) {
 			
@@ -303,6 +364,25 @@ SINGLETON_IMPL(MainGameController);
 			double ang = (rand()%360) * M_PI / 180.0 ;
 			m.center = CGPointMake( _monsterField.bounds.size.width/2 + 480*cos(ang), _monsterField.bounds.size.height/2 + 480*sin(ang) );			
 		}
+	} else if ([_activeMonsters count] > numMonsters) {
+		for (int i = [_activeMonsters count]; i > numMonsters; i--) {
+						
+			int rIdx = (rand()%[_activeMonsters count]);
+			while (rIdx != _indexIt) rIdx = (rand()%[_activeMonsters count]);
+			MonsterInfo *newMonster = _activeMonsters[rIdx];
+			
+			/* Add to array */
+			[_activeMonsters removeObject:newMonster];
+			newMonster.active = NO;
+			
+			/* Update it */
+			if (rIdx < _indexIt) _indexIt--;
+			
+			/* Set to point off screen for next lead in */
+			double ang = (rand()%360) * M_PI / 180.0 ;
+			CGPoint newCenter = CGPointMake( _monsterField.bounds.size.width/2 + 480*cos(ang), _monsterField.bounds.size.height/2 + 480*sin(ang) );
+			[newMonster.view animateToNewCenter:newCenter];
+		}
 	}
 }
 
@@ -311,8 +391,9 @@ SINGLETON_IMPL(MainGameController);
 	for (MonsterInfo *activeMonster in _activeMonsters) {
 		/* Ugly hack to not animate the it monster */
 		if (_dontAnimateIndex == i) { i++; continue; }
-		
+						
 		CGPoint center = [self newRandomCenterForActiveMonsterAtIndex:i];
+		activeMonster.destination = center;
 		
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(floatBetween(0, 0.5) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
 			[activeMonster.view animateToNewCenter:center];
@@ -326,12 +407,12 @@ SINGLETON_IMPL(MainGameController);
 	MonsterInfo *monster = _activeMonsters[index];
 	CGPoint point = [monster randomValidCenterInSize:_monsterField.bounds.size];
 	
-	if (0 && index > 0) {
+	if (index > 0) {
 		/* If we need to create affinity to another monster, do so */
-		if (self.affinityChance < floatBetween(0, 1)) {
+		if (self.affinityChance > floatBetween(0, 1)) {
 			MonsterInfo *otherMonster = _activeMonsters[rand()%index];
-			point.x += (self.affinityStrength) * (otherMonster.view.center.x - point.x);
-			point.y += (self.affinityStrength) * (otherMonster.view.center.y - point.y);
+			point.x += (self.affinityStrength) * (otherMonster.destination.x - point.x);
+			point.y += (self.affinityStrength) * (otherMonster.destination.y - point.y);
 		}
 	}
 	
@@ -388,6 +469,11 @@ SINGLETON_IMPL(MainGameController);
 		/* Record hit */
 		[GameState sharedInstance].hitsMade++;
 		
+		/* Give more shotguns */
+		if ([GameState sharedInstance].hitsMade % 10 == 0) {
+			[GameState sharedInstance].shotgunsLeft++;
+		}
+		
 		/* Scatter */
 		_dontAnimateIndex = _indexIt;
 		[self animateMonstersNewPositions];
@@ -396,6 +482,9 @@ SINGLETON_IMPL(MainGameController);
 		/* Present it */
 		[self animateIt];
 		
+		/* Change count - not working blah */
+		//[self setMonsterCountTo:self.monstersForScore];
+				
 		/* New it */
 		[self setNewIt];
 	}
@@ -431,6 +520,7 @@ SINGLETON_IMPL(MainGameController);
 
 - (BOOL) doesIndexArrayContainIt:(NSArray*)indexArray {
 	for (NSNumber *n in indexArray) {
+		//NSLog(@"%d %d %d", [n intValue], _indexIt, [_activeMonsters count]);
 		if ([n intValue] == _indexIt) return YES;
 	}
 	return NO;

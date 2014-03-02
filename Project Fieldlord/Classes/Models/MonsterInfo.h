@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "MonsterView.h"
 
+#define NUM_MONSTERS 20
+
 @interface MonsterInfo : NSObject
 
 @property (nonatomic, assign) BOOL active;
@@ -19,6 +21,8 @@
 
 @property (nonatomic, readonly) CGSize defaultSize;
 @property (nonatomic, readonly) MonsterView *view;
+
+@property (nonatomic, assign) CGPoint destination;
 
 + (MonsterInfo*) monsterAtIndex:(int)index;
 + (int) indexForRandomMonsterWithActiveState:(BOOL)active;

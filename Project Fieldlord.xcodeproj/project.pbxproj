@@ -590,6 +590,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Project Fieldlord/Project Fieldlord-Prefix.pch";
 				INFOPLIST_FILE = "Project Fieldlord/Project Fieldlord-Info.plist";
+				OTHER_CFLAGS = "-DEXDEBUGENABLED";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -603,6 +604,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Project Fieldlord/Project Fieldlord-Prefix.pch";
 				INFOPLIST_FILE = "Project Fieldlord/Project Fieldlord-Info.plist";
+				OTHER_CFLAGS = "-DEXDEBUGENABLED";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

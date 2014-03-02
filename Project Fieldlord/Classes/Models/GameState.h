@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MonsterInfo.h"
+
+#define DEFAULT_SHOTGUNS 3
 
 @interface GameState : NSObject
 
@@ -17,5 +20,9 @@ SINGLETON_INTR(GameState);
 @property (nonatomic, assign) int64_t hitsMade;
 @property (nonatomic, readonly) int64_t score;
 @property (nonatomic, assign) int shotgunsLeft;
+
+
+- (void) saveState;
+- (NSArray*) loadState;
 
 @end

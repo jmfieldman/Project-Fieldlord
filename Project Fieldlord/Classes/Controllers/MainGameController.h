@@ -64,4 +64,6 @@ SINGLETON_INTR(MainGameController);
 
 - (void) updateStats;
 
+- (int) it;
+
 @end
