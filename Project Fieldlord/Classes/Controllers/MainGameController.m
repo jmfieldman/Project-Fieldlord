@@ -68,7 +68,7 @@ SINGLETON_IMPL(MainGameController);
 		_statsView.layer.borderWidth = 1.0;
 		_statsView.layer.shadowOpacity = 0.5;
 		_statsView.layer.shadowColor = [UIColor blackColor].CGColor;
-		_statsView.layer.shadowOffset = CGSizeMake(1, 1);
+		_statsView.layer.shadowOffset = CGSizeMake(0, 0);
 		_statsView.layer.shadowRadius = 2;
 		_statsView.layer.shouldRasterize = YES;
 		_statsView.layer.rasterizationScale = [UIScreen mainScreen].scale;

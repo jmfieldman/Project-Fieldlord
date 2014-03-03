@@ -10,6 +10,19 @@
 
 @interface HelpView : UIView {
 	UIButton *_closeField;
+	
+	UIView *_soundHelp;
+	UIView *_gamecHelp;
+	UIView *_powerHelp;
+	UIView *_resetHelp;
+	UIView *_qmarkHelp;
+	
+	
+	UIView *_ratioHelp;
+	UIView *_scoreHelp;
+	UIView *_instrHelp;
+	
+	NSArray *_bubbles;
 }
 
 
