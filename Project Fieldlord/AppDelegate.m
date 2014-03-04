@@ -20,7 +20,7 @@
 	
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor colorWithWhite:238/255.0 alpha:1];
 	
 	/* Add the main controller */
 	self.window.rootViewController = [MainGameController sharedInstance];

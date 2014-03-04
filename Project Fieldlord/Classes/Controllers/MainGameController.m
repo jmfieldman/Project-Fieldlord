@@ -26,7 +26,7 @@ SINGLETON_IMPL(MainGameController);
 	if ((self = [super init])) {
 		
 		self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-		self.view.backgroundColor = [UIColor whiteColor];
+		self.view.backgroundColor = [UIColor colorWithWhite:238/255.0 alpha:1];
 		
 		_dontAnimateIndex = -1;
 		
@@ -312,6 +312,36 @@ SINGLETON_IMPL(MainGameController);
 	}
 }
 
+- (void) applyEarthquakeToView:(UIView*)v duration:(float)duration delay:(float)delay offset:(int)offset {
+	CAKeyframeAnimation *transanimation;
+	transanimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+	transanimation.duration = duration;
+	transanimation.cumulative = YES;
+	int offhalf = offset / 2;
+	
+	int numFrames = 10;
+	NSMutableArray *positions = [NSMutableArray array];
+	NSMutableArray *keytimes  = [NSMutableArray array];
+	NSMutableArray *timingfun = [NSMutableArray array];
+	[positions addObject:[NSValue valueWithCATransform3D:CATransform3DIdentity]];
+	[keytimes addObject:@(0)];
+	for (int i = 0; i < numFrames; i++) {
+		[positions addObject:[NSValue valueWithCATransform3D:CATransform3DMakeTranslation(rand()%offset-offhalf, rand()%offset-offhalf,0)]];
+		[keytimes addObject:@( ((float)(i+1))/(numFrames+2) )];
+		[timingfun addObject:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+	}
+	[positions addObject:[NSValue valueWithCATransform3D:CATransform3DIdentity]];
+	[keytimes addObject:@(1)];
+	[timingfun addObject:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+	
+	transanimation.values = positions;
+	transanimation.keyTimes = keytimes;
+	transanimation.calculationMode = kCAAnimationCubic;
+	transanimation.timingFunctions = timingfun;
+	transanimation.beginTime = CACurrentMediaTime() + delay;
+	[v.layer addAnimation:transanimation forKey:nil];
+}
+
 - (void) updateStats {
 	_shotsLabel.text = [NSString stringWithFormat:@"%lld / %lld", [GameState sharedInstance].hitsMade, [GameState sharedInstance].shotsAttempted];
 	_scoreLabel.text = [NSString stringWithFormat:@"%lld pts", [GameState sharedInstance].score];
@@ -503,6 +533,18 @@ SINGLETON_IMPL(MainGameController);
 		[self animateShotgunAtPoint:p];
 		[self armShotgun:NO];
 		[GameState sharedInstance].shotgunsLeft--;
+		
+		[self applyEarthquakeToView:self.view duration:0.4 delay:0 offset:14];
+		
+		float du = 1;
+		float de = 0.3;
+		float of = 2;
+		[self applyEarthquakeToView:_muteButton    duration:du delay:de offset:of];
+		[self applyEarthquakeToView:_gcButton      duration:du delay:de offset:of];
+		[self applyEarthquakeToView:_shotgunButton duration:du delay:de offset:of];
+		[self applyEarthquakeToView:_restartButton duration:du delay:de offset:of];
+		[self applyEarthquakeToView:_helpButton    duration:du delay:de offset:of];
+		[self applyEarthquakeToView:_statsView     duration:du delay:de offset:of];
 	}
 	
 	/* Update stats */
