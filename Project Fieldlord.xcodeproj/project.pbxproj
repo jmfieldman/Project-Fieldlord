@@ -53,6 +53,7 @@
 		35F620FC18BFA95500179473 /* reticule.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F620F918BFA95500179473 /* reticule.png */; };
 		35F620FD18BFA95500179473 /* reticule@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F620FA18BFA95500179473 /* reticule@2x.png */; };
 		35F6210318C6C21200179473 /* libFlurry_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F6210218C6C21200179473 /* libFlurry_4.3.2.a */; };
+		35F6210518C6C34700179473 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F6210418C6C34700179473 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		35F6210018C6C21200179473 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		35F6210118C6C21200179473 /* FlurryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryKey.h; sourceTree = "<group>"; };
 		35F6210218C6C21200179473 /* libFlurry_4.3.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.2.a; sourceTree = "<group>"; };
+		35F6210418C6C34700179473 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35F6210518C6C34700179473 /* SystemConfiguration.framework in Frameworks */,
 				357CF1D018C26BEA005D3989 /* AVFoundation.framework in Frameworks */,
 				35F6210318C6C21200179473 /* libFlurry_4.3.2.a in Frameworks */,
 				3537D1D618BBE3700021C8CF /* CoreGraphics.framework in Frameworks */,
@@ -181,6 +184,7 @@
 		3537D1D218BBE3700021C8CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				35F6210418C6C34700179473 /* SystemConfiguration.framework */,
 				357CF1CF18C26BEA005D3989 /* AVFoundation.framework */,
 				3537D1D318BBE3700021C8CF /* Foundation.framework */,
 				3537D1D518BBE3700021C8CF /* CoreGraphics.framework */,

@@ -13,6 +13,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	/* Install flurry */
+	[Flurry setCrashReportingEnabled:YES];
+	[Flurry startSession:FLURRY_KEY];
+	
 	/* Seed random time */
 	srand(time(0));
 	InitializeMathHelper();
