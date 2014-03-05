@@ -52,6 +52,7 @@
 		35F620FB18BFA95500179473 /* game_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F620F818BFA95500179473 /* game_background.png */; };
 		35F620FC18BFA95500179473 /* reticule.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F620F918BFA95500179473 /* reticule.png */; };
 		35F620FD18BFA95500179473 /* reticule@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F620FA18BFA95500179473 /* reticule@2x.png */; };
+		35F6210318C6C21200179473 /* libFlurry_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F6210218C6C21200179473 /* libFlurry_4.3.2.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,9 @@
 		35F620F818BFA95500179473 /* game_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_background.png; sourceTree = "<group>"; };
 		35F620F918BFA95500179473 /* reticule.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reticule.png; sourceTree = "<group>"; };
 		35F620FA18BFA95500179473 /* reticule@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reticule@2x.png"; sourceTree = "<group>"; };
+		35F6210018C6C21200179473 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		35F6210118C6C21200179473 /* FlurryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryKey.h; sourceTree = "<group>"; };
+		35F6210218C6C21200179473 /* libFlurry_4.3.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.2.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				357CF1D018C26BEA005D3989 /* AVFoundation.framework in Frameworks */,
+				35F6210318C6C21200179473 /* libFlurry_4.3.2.a in Frameworks */,
 				3537D1D618BBE3700021C8CF /* CoreGraphics.framework in Frameworks */,
 				3537D1D818BBE3700021C8CF /* UIKit.framework in Frameworks */,
 				3537D1D418BBE3700021C8CF /* Foundation.framework in Frameworks */,
@@ -188,6 +193,7 @@
 		3537D1D918BBE3700021C8CF /* Project Fieldlord */ = {
 			isa = PBXGroup;
 			children = (
+				35F620FE18C6C21200179473 /* External */,
 				3537D20518BBE3CC0021C8CF /* Helpers */,
 				3537D20418BBE3C80021C8CF /* Views */,
 				3537D20318BBE3C00021C8CF /* Controllers */,
@@ -344,6 +350,24 @@
 				35E1614518BE3D50002962D3 /* game_background@2x.png */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		35F620FE18C6C21200179473 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				35F620FF18C6C21200179473 /* Flurry */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		35F620FF18C6C21200179473 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				35F6210018C6C21200179473 /* Flurry.h */,
+				35F6210118C6C21200179473 /* FlurryKey.h */,
+				35F6210218C6C21200179473 /* libFlurry_4.3.2.a */,
+			);
+			path = Flurry;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -600,6 +624,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Project Fieldlord/Project Fieldlord-Prefix.pch";
 				INFOPLIST_FILE = "Project Fieldlord/Project Fieldlord-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jasonfieldman/Development/Project-Fieldlord/Project\\ Fieldlord/External/Flurry",
+				);
 				OTHER_CFLAGS = "-DEXDEBUGENABLED";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -615,6 +643,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Project Fieldlord/Project Fieldlord-Prefix.pch";
 				INFOPLIST_FILE = "Project Fieldlord/Project Fieldlord-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jasonfieldman/Development/Project-Fieldlord/Project\\ Fieldlord/External/Flurry",
+				);
 				OTHER_CFLAGS = "-DEXDEBUGENABLED";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
