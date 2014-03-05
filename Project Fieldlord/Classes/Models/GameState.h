@@ -18,8 +18,10 @@ SINGLETON_INTR(GameState);
 
 @property (nonatomic, assign) int64_t shotsAttempted;
 @property (nonatomic, assign) int64_t hitsMade;
+@property (nonatomic, assign) int64_t totalHitsMade;
 @property (nonatomic, readonly) int64_t score;
 @property (nonatomic, assign) int shotgunsLeft;
+
 
 
 - (void) saveState;

@@ -34,6 +34,7 @@ SINGLETON_IMPL(GameState);
 	dic.dictionary[@"shots"]   = @(_shotsAttempted);
 	dic.dictionary[@"hits"]    = @(_hitsMade);
 	dic.dictionary[@"shotgun"] = @(_shotgunsLeft);
+	dic.dictionary[@"thits"]   = @(_totalHitsMade);
 	dic.dictionary[@"it"]      = @([[MainGameController sharedInstance] it]);
 
 	NSMutableArray *monsters = [NSMutableArray array];
@@ -57,9 +58,10 @@ SINGLETON_IMPL(GameState);
 		return nil;
 	}
 	
-	_shotsAttempted = [dic.dictionary[@"shots"]   intValue];
-	_hitsMade       = [dic.dictionary[@"hits"]    intValue];
+	_shotsAttempted = [dic.dictionary[@"shots"]   longLongValue];
+	_hitsMade       = [dic.dictionary[@"hits"]    longLongValue];
 	_shotgunsLeft   = [dic.dictionary[@"shotgun"] intValue];
+	_totalHitsMade  = [dic.dictionary[@"thits"]   longLongValue];
 		
 	return dic.dictionary[@"monster_centers"];
 }

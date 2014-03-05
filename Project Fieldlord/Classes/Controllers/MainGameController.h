@@ -12,7 +12,7 @@
 #import "GameState.h"
 #import "HelpView.h"
 
-@interface MainGameController : UIViewController <UIGestureRecognizerDelegate> {
+@interface MainGameController : UIViewController <UIGestureRecognizerDelegate, GKGameCenterControllerDelegate> {
 
 	/* Gesture Pad */
 	UIView *_gesturePad;
@@ -25,6 +25,9 @@
 	
 	/* Shotgun */
 	BOOL _shotgunArmed;
+	
+	/* GC crap */
+	BOOL _wantsGCShow;
 	
 	/* Views */
 	UIView   *_monsterField;
@@ -66,7 +69,10 @@ SINGLETON_INTR(MainGameController);
 - (void) animateMonstersToAvoidTouchAt:(CGPoint)point;
 
 - (void) updateStats;
+- (void) updateGCStats;
 
 - (int) it;
+
+
 
 @end

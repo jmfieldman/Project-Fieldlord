@@ -243,6 +243,9 @@ SINGLETON_IMPL(MainGameController);
 		_helpView.alpha = 0;
 		_helpView.userInteractionEnabled = NO;
 		[self.view addSubview:_helpView];
+		
+		/* GC */
+		//if ([GKLocalPlayer localPlayer].authenticated) { /* Do nothing */ _helpView.alpha = 0; };
 	}
 	return self;
 }
@@ -256,6 +259,8 @@ SINGLETON_IMPL(MainGameController);
 - (void) pressedHelp:(id)sender {
 	[PreloadedSFX playSFX:PLSFX_MENUTAP];
 	
+	[Flurry logEvent:@"Used_Help"];
+	
 	[_helpView animateIn];
 }
 
@@ -266,6 +271,61 @@ SINGLETON_IMPL(MainGameController);
 
 - (void) pressedGamecenter:(id)sender {
 	[PreloadedSFX playSFX:PLSFX_MENUTAP];
+	
+	[Flurry logEvent:@"Accessed_Gamecenter"];
+	
+	_wantsGCShow = YES;
+	
+	/* Authorize if needed */
+	if (![GKLocalPlayer localPlayer].authenticated) {
+		
+		if ([[GKLocalPlayer localPlayer] respondsToSelector:@selector(setAuthenticateHandler:)]) {
+			[GKLocalPlayer localPlayer].authenticateHandler = ^(UIViewController *viewController, NSError *error) {
+				if (viewController) {
+					[self presentViewController:viewController animated:YES completion:^{
+						[self updateGCStats];
+						[self showGamecenterInfo];
+					}];
+				} else {
+					[self updateGCStats];
+					[self showGamecenterInfo];
+				}
+			};
+		}
+		
+	} else {
+		[self updateGCStats];
+		[self showGamecenterInfo];
+	}
+}
+
+- (void) showGamecenterInfo {
+	if (![GKLocalPlayer localPlayer].authenticated) {
+		return;
+	}
+	
+	if (!_wantsGCShow) return;
+	_wantsGCShow = NO;
+	
+	GKGameCenterViewController *vc = [[GKGameCenterViewController alloc] init];
+	vc.gameCenterDelegate = self;
+	[self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController {
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) updateGCStats {
+	if (![GKLocalPlayer localPlayer].authenticated) return;
+	
+	GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:@"SCORE"];
+	score.value = [GameState sharedInstance].score;
+	
+	GKScore *total = [[GKScore alloc] initWithLeaderboardIdentifier:@"TOTALHITS"];
+	total.value = [GameState sharedInstance].totalHitsMade;
+	
+	[GKScore reportScores:@[score, total] withCompletionHandler:^(NSError *error) {}];
 }
 
 - (void) pressedShotgun:(id)sender {
@@ -286,6 +346,8 @@ SINGLETON_IMPL(MainGameController);
 }
 
 - (void) doRestart {
+	[Flurry logEvent:@"Restarted"];
+	
 	[GameState sharedInstance].hitsMade = 0;
 	[GameState sharedInstance].shotsAttempted = 0;
 	[GameState sharedInstance].shotgunsLeft = DEFAULT_SHOTGUNS;
@@ -502,15 +564,19 @@ SINGLETON_IMPL(MainGameController);
 	NSArray *monstersTapped = [self monsterIndexesOverlappingPoint:p];
 	BOOL     itTapped = [self doesIndexArrayContainIt:monstersTapped];
 	
+	[Flurry logEvent:@"Tapped_Screen" withParameters:@{@"hit_it":( itTapped ? @(1) : @(0) ), @"touch_count":@([monstersTapped count])}];
+	
 	if (!itTapped) {
 		[self animateMonstersToAvoidTouchAt:p];
 	} else {
 		/* Record hit */
 		[GameState sharedInstance].hitsMade++;
+		[GameState sharedInstance].totalHitsMade++;
 		
 		/* Give more shotguns */
 		if ([GameState sharedInstance].hitsMade % 10 == 0) {
 			[GameState sharedInstance].shotgunsLeft++;
+			[Flurry logEvent:@"Earned_Powershot"];
 		}
 		
 		/* Scatter */
@@ -530,6 +596,8 @@ SINGLETON_IMPL(MainGameController);
 	
 	/* Shotgun? */
 	if (_shotgunArmed) {
+		[Flurry logEvent:@"Used_Powershot"];
+		
 		[self animateShotgunAtPoint:p];
 		[self armShotgun:NO];
 		[GameState sharedInstance].shotgunsLeft--;
