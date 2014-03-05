@@ -61,7 +61,7 @@
 										arrowDirection:-1];
 		
 		_instrHelp = [self createHelpBubbleWithinFrame:CGRectMake(20, 160, 280, 100)
-											   forText:@"Each round, a random one of your minions is it.  Tap it to score, then start a new round!\n\nTapping hits all monsters under your finger.  Since your score is based on your hit ratio, maximize your score by tapping where lots of minions overlap!"
+											   forText:@"Each round, a random one of your minions is it.  Tap it to score, then start a new round!\n\nTapping hits all minions under your finger.  Since your score is based on your hit ratio, maximize your score by tapping where lots of minions overlap!"
 												arrowX:100
 										arrowDirection:0];
 		
