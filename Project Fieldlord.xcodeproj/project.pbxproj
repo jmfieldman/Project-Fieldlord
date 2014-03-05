@@ -55,6 +55,8 @@
 		35F6210318C6C21200179473 /* libFlurry_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F6210218C6C21200179473 /* libFlurry_4.3.2.a */; };
 		35F6210518C6C34700179473 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F6210418C6C34700179473 /* SystemConfiguration.framework */; };
 		35F6210718C6C51D00179473 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F6210618C6C51D00179473 /* GameKit.framework */; };
+		35F6210A18C7852B00179473 /* burst.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F6210818C7852B00179473 /* burst.png */; };
+		35F6210B18C7852B00179473 /* burst@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F6210918C7852B00179473 /* burst@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +137,8 @@
 		35F6210218C6C21200179473 /* libFlurry_4.3.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.2.a; sourceTree = "<group>"; };
 		35F6210418C6C34700179473 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		35F6210618C6C51D00179473 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		35F6210818C7852B00179473 /* burst.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = burst.png; sourceTree = "<group>"; };
+		35F6210918C7852B00179473 /* burst@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "burst@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +346,8 @@
 		35E1614418BE3D50002962D3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				35F6210818C7852B00179473 /* burst.png */,
+				35F6210918C7852B00179473 /* burst@2x.png */,
 				357CF1D118C26F8F005D3989 /* icon_gc.png */,
 				357CF1D218C26F8F005D3989 /* icon_gc@2x.png */,
 				357CF1B918C26A05005D3989 /* icon_speaker.png */,
@@ -462,6 +468,7 @@
 				357CF1C218C26A05005D3989 /* icon_speaker@2x.png in Resources */,
 				357CF1DA18C2778E005D3989 /* MuseoSansRounded-700.otf in Resources */,
 				357CF1D418C26F8F005D3989 /* icon_gc@2x.png in Resources */,
+				35F6210A18C7852B00179473 /* burst.png in Resources */,
 				35E1614618BE3D50002962D3 /* game_background@2x.png in Resources */,
 				3537D1DE18BBE3700021C8CF /* InfoPlist.strings in Resources */,
 				357CF1C518C26A05005D3989 /* icon_question.png in Resources */,
@@ -474,6 +481,7 @@
 				35E1613818BC33FF002962D3 /* Dosis-Regular.otf in Resources */,
 				35F620FB18BFA95500179473 /* game_background.png in Resources */,
 				357CF1C118C26A05005D3989 /* icon_speaker.png in Resources */,
+				35F6210B18C7852B00179473 /* burst@2x.png in Resources */,
 				357CF1C418C26A05005D3989 /* icon_xout@2x.png in Resources */,
 				357CF1C318C26A05005D3989 /* icon_xout.png in Resources */,
 				3537D1E618BBE3700021C8CF /* Images.xcassets in Resources */,

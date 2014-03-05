@@ -49,6 +49,11 @@ SINGLETON_IMPL(MainGameController);
 			[_monsterField addSubview:v];
 		}
 		
+		_burstView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+		_burstView.image = [UIImage imageNamed:@"burst"];
+		_burstView.alpha = 0;
+		[_monsterField addSubview:_burstView];
+		
 		/*
 		UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(10, 200, 200, 50)];
 		lab.text = @"Hello World!";
@@ -728,6 +733,8 @@ SINGLETON_IMPL(MainGameController);
 	//NSLog(@"moving: %.0f %.0f %.0f %.0f", curCenter.x, curCenter.y, newCenter.x, newCenter.y);
 	
 	monster.view.center = curCenter;
+	_burstView.center = monster.view.center;
+	_burstView.transform = CGAffineTransformIdentity;
 	[monster.view.layer removeAnimationForKey:@"moveMonster"];
 	[monster.view.layer removeAnimationForKey:@"bobbleW"];
 	[monster.view.layer removeAnimationForKey:@"bobbleH"];
@@ -740,20 +747,28 @@ SINGLETON_IMPL(MainGameController);
 	const float zoom_duration = 0.6;
 	
 	_monsterField.userInteractionEnabled = NO;
+	[_monsterField bringSubviewToFront:_burstView];
 	[_monsterField bringSubviewToFront:monster.view];
 	[_monsterField bringSubviewToFront:_gesturePad];
 	[UIView animateWithDuration:zoom_duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
 		monster.view.center = CGPointMake(curCenter.x+(newCenter.x-curCenter.x)/2, curCenter.y+(newCenter.y-curCenter.y)/2);
 		monster.view.transform = CGAffineTransformScale(CGAffineTransformMakeRotation(floatBetween(-0.1, 0.1)*M_PI), 3, 3);
+		_burstView.center = monster.view.center;
+		_burstView.alpha = 1;
 	} completion:^(BOOL finished) {
 		[UIView animateWithDuration:zoom_duration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
 			monster.view.transform = CGAffineTransformIdentity;
 			monster.view.center = newCenter;
+			_burstView.center = monster.view.center;
+			_burstView.alpha = 0;
 		} completion:^(BOOL finished) {
 			_monsterField.userInteractionEnabled = YES;
 		}];
 	}];
 	
+	[UIView animateWithDuration:(zoom_duration*2) delay:0 options:0 animations:^{
+		_burstView.transform = CGAffineTransformMakeRotation(M_PI/4 * ((rand()%2)?-1:1));
+	} completion:nil];
 }
 
 

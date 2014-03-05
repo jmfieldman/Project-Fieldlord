@@ -38,6 +38,9 @@
 	UILabel  *_shotsLabel;
 	UILabel  *_scoreLabel;
 	
+	/* Burst */
+	UIImageView *_burstView;
+	
 	/* Menu */
 	UIView   *_menuView;
 	
