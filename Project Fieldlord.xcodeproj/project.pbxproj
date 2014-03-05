@@ -54,6 +54,7 @@
 		35F620FD18BFA95500179473 /* reticule@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F620FA18BFA95500179473 /* reticule@2x.png */; };
 		35F6210318C6C21200179473 /* libFlurry_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F6210218C6C21200179473 /* libFlurry_4.3.2.a */; };
 		35F6210518C6C34700179473 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F6210418C6C34700179473 /* SystemConfiguration.framework */; };
+		35F6210718C6C51D00179473 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F6210618C6C51D00179473 /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,7 @@
 		35F6210118C6C21200179473 /* FlurryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryKey.h; sourceTree = "<group>"; };
 		35F6210218C6C21200179473 /* libFlurry_4.3.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.3.2.a; sourceTree = "<group>"; };
 		35F6210418C6C34700179473 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		35F6210618C6C51D00179473 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35F6210718C6C51D00179473 /* GameKit.framework in Frameworks */,
 				35F6210518C6C34700179473 /* SystemConfiguration.framework in Frameworks */,
 				357CF1D018C26BEA005D3989 /* AVFoundation.framework in Frameworks */,
 				35F6210318C6C21200179473 /* libFlurry_4.3.2.a in Frameworks */,
@@ -184,6 +187,7 @@
 		3537D1D218BBE3700021C8CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				35F6210618C6C51D00179473 /* GameKit.framework */,
 				35F6210418C6C34700179473 /* SystemConfiguration.framework */,
 				357CF1CF18C26BEA005D3989 /* AVFoundation.framework */,
 				3537D1D318BBE3700021C8CF /* Foundation.framework */,
