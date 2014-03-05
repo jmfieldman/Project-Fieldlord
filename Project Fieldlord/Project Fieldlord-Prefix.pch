@@ -23,4 +23,6 @@
 	#import "SKBounceAnimation.h"
 	#import "MathHelper.h"
 	#import "PreloadedSFX.h"
+	#import "Flurry.h"
+	#import "FlurryKey.h"
 #endif
