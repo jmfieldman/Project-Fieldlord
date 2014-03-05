@@ -246,6 +246,7 @@ SINGLETON_IMPL(MainGameController);
 		
 		/* GC */
 		//if ([GKLocalPlayer localPlayer].authenticated) { /* Do nothing */ _helpView.alpha = 0; };
+		_achReport = [NSMutableDictionary dictionary];
 	}
 	return self;
 }
@@ -297,6 +298,15 @@ SINGLETON_IMPL(MainGameController);
 		[self updateGCStats];
 		[self showGamecenterInfo];
 	}
+	
+	/* Debug stuff */
+	#if 0
+	[GKAchievement resetAchievementsWithCompletionHandler:^(NSError *error) {
+	}];
+	[GKAchievement loadAchievementsWithCompletionHandler:^(NSArray *achievements, NSError *error) {
+		NSLog(@"ach: %@ %@", achievements, error);
+	}];
+	#endif
 }
 
 - (void) showGamecenterInfo {
@@ -309,6 +319,7 @@ SINGLETON_IMPL(MainGameController);
 	
 	GKGameCenterViewController *vc = [[GKGameCenterViewController alloc] init];
 	vc.gameCenterDelegate = self;
+	vc.viewState = GKGameCenterViewControllerStateAchievements;
 	[self presentViewController:vc animated:YES completion:nil];
 }
 
@@ -326,6 +337,17 @@ SINGLETON_IMPL(MainGameController);
 	total.value = [GameState sharedInstance].totalHitsMade;
 	
 	[GKScore reportScores:@[score, total] withCompletionHandler:^(NSError *error) {}];
+}
+
+- (void) reportAchievement:(NSString*)ach {
+	if (![GKLocalPlayer localPlayer].authenticated) return;
+	if ([[_achReport objectForKey:ach] boolValue]) return;
+	
+	GKAchievement *a = [[GKAchievement alloc] initWithIdentifier:ach];
+	a.percentComplete = 100.0;
+	a.showsCompletionBanner = YES;
+	[GKAchievement reportAchievements:@[ a ] withCompletionHandler:^(NSError *error) {}];
+	_achReport[ach] = [NSNumber numberWithBool:YES];
 }
 
 - (void) pressedShotgun:(id)sender {
@@ -566,6 +588,21 @@ SINGLETON_IMPL(MainGameController);
 	
 	[Flurry logEvent:@"Tapped_Screen" withParameters:@{@"hit_it":( itTapped ? @(1) : @(0) ), @"touch_count":@([monstersTapped count])}];
 	
+	int mTapCount = [monstersTapped count];
+	if (mTapCount > 1 && !_shotgunArmed) {
+		[self reportAchievement:@"ONESHOTTWO"];		
+	}
+	if (mTapCount > 3 && !_shotgunArmed) {
+		[self reportAchievement:@"ONESHOTFOUR"];
+	}
+	if (mTapCount > 9 && !_shotgunArmed) {
+		[self reportAchievement:@"ONESHOTTEN"];
+	}
+	if (mTapCount > 11 && _shotgunArmed) {
+		[self reportAchievement:@"POWEROVER"];
+	}
+	
+	
 	if (!itTapped) {
 		[self animateMonstersToAvoidTouchAt:p];
 	} else {
@@ -618,6 +655,13 @@ SINGLETON_IMPL(MainGameController);
 	/* Update stats */
 	[GameState sharedInstance].shotsAttempted++;
 	[self updateStats];
+	
+	int64_t score = [GameState sharedInstance].score;
+	if (score == 42) {
+		[self reportAchievement:@"MEANINGLIFE"];
+	} else if (score > 9000) {
+		[self reportAchievement:@"OVER9000"];
+	}
 }
 
 - (NSArray*) monsterIndexesOverlappingPoint:(CGPoint)point {

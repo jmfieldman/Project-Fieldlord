@@ -28,6 +28,7 @@
 	
 	/* GC crap */
 	BOOL _wantsGCShow;
+	NSMutableDictionary *_achReport;
 	
 	/* Views */
 	UIView   *_monsterField;
