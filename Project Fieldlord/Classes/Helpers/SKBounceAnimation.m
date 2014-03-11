@@ -109,7 +109,7 @@
 }
 
 - (void) setNumberOfBounces:(NSUInteger)newNumberOfBounces {
-	[super setValue:[NSNumber numberWithUnsignedInt:newNumberOfBounces] forKey:@"numberOfBouncesKey"];
+	[super setValue:[NSNumber numberWithUnsignedInt:(int)newNumberOfBounces] forKey:@"numberOfBouncesKey"];
 	[self createValueArray];
 }
 
@@ -123,7 +123,7 @@
 }
 
 - (SKBounceAnimationStiffness) stiffness {
-	return [[super valueForKey:@"stifnessKey"] integerValue];
+	return (SKBounceAnimationStiffness)[[super valueForKey:@"stifnessKey"] integerValue];
 }
 
 - (void) setShouldOvershoot:(BOOL)newShouldOvershoot {

@@ -68,11 +68,11 @@ BOOL init_sockaddr(struct sockaddr_in *name, const char *hostname, unsigned shor
 		
 		/* OtherwEXe transmit */
 		const char *utf8string = [string UTF8String];
-		int len = [string length];
+		long len = [string length];
 		
 		@synchronized (self) {
-			int charsSent;
-			int lenLeft = len;
+			long charsSent;
+			long lenLeft = len;
 			while ((charsSent = write(sock, utf8string, lenLeft))) {
 				if (charsSent < 0) {
 					connectionFailed = YES;

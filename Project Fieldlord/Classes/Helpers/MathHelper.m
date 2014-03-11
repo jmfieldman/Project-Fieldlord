@@ -89,7 +89,7 @@ int *rng_final;
 void InitializeRNGHelper() {
 	rng_ptr = rng_pool;
 	rng_final = rng_ptr + RNG_SZ;
-	srand(time(0));
+	srand((int)time(0));
 	for (int i = 0; i < RNG_SZ; i++) {
 		rng_pool[i] = rand();
 	}

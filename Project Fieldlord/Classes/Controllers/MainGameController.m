@@ -478,7 +478,7 @@ SINGLETON_IMPL(MainGameController);
 - (void) setMonsterCountTo:(int)numMonsters {
 	EXLog(ANY, DBG, @"Changing count to %d", numMonsters);
 	if ([_activeMonsters count] < numMonsters) {
-		for (int i = [_activeMonsters count]; i < numMonsters; i++) {
+		for (long i = [_activeMonsters count]; i < numMonsters; i++) {
 			
 			int mIndex = [MonsterInfo indexForRandomMonsterWithActiveState:NO];
 			MonsterInfo *newMonster = [MonsterInfo monsterAtIndex:mIndex];
@@ -493,7 +493,7 @@ SINGLETON_IMPL(MainGameController);
 			m.center = CGPointMake( _monsterField.bounds.size.width/2 + 480*cos(ang), _monsterField.bounds.size.height/2 + 480*sin(ang) );			
 		}
 	} else if ([_activeMonsters count] > numMonsters) {
-		for (int i = [_activeMonsters count]; i > numMonsters; i--) {
+		for (long i = [_activeMonsters count]; i > numMonsters; i--) {
 						
 			int rIdx = (rand()%[_activeMonsters count]);
 			while (rIdx != _indexIt) rIdx = (rand()%[_activeMonsters count]);
@@ -593,7 +593,7 @@ SINGLETON_IMPL(MainGameController);
 	
 	[Flurry logEvent:@"Tapped_Screen" withParameters:@{@"hit_it":( itTapped ? @(1) : @(0) ), @"touch_count":@([monstersTapped count])}];
 	
-	int mTapCount = [monstersTapped count];
+	long mTapCount = [monstersTapped count];
 	if (mTapCount > 1 && !_shotgunArmed) {
 		[self reportAchievement:@"ONESHOTTWO"];		
 	}

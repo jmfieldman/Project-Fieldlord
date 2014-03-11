@@ -33,7 +33,7 @@ static __strong NSMutableArray *s_monsterArray = nil;
 }
 
 + (int) maxMonsterCount {
-	return [s_monsterArray count];
+	return (int)[s_monsterArray count];
 }
 
 + (int) indexForRandomMonsterWithActiveState:(BOOL)active {
