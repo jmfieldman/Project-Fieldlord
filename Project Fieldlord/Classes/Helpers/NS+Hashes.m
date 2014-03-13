@@ -239,7 +239,7 @@
     if (accumulator > 2) outputLength++;
     
     //truncate data to match actual output length
-    outputData.length = outputLength;
+    outputData.length = (int)outputLength;
     return outputLength? outputData: nil;
 }
 
