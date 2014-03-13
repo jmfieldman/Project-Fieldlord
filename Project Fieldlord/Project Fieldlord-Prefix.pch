@@ -15,6 +15,7 @@
 	#import <Foundation/Foundation.h>
 	#import <AVFoundation/AVFoundation.h>
 	#import <GameKit/GameKit.h>
+	#import <AudioToolbox/AudioToolbox.h>
 
 	#import "EXDebug.h"
 	#import "EXRemoteLog.h"

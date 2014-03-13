@@ -20,6 +20,7 @@
 		3537D1F718BBE3700021C8CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3537D1F518BBE3700021C8CF /* InfoPlist.strings */; };
 		3537D1F918BBE3700021C8CF /* Project_FieldlordTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3537D1F818BBE3700021C8CF /* Project_FieldlordTests.m */; };
 		3537D20818BBE3FC0021C8CF /* MainGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3537D20718BBE3FC0021C8CF /* MainGameController.m */; };
+		35722E5D18D20A87008D71F9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35722E5C18D20A87008D71F9 /* AudioToolbox.framework */; };
 		357CF1C118C26A05005D3989 /* icon_speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 357CF1B918C26A05005D3989 /* icon_speaker.png */; };
 		357CF1C218C26A05005D3989 /* icon_speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 357CF1BA18C26A05005D3989 /* icon_speaker@2x.png */; };
 		357CF1C318C26A05005D3989 /* icon_xout.png in Resources */ = {isa = PBXBuildFile; fileRef = 357CF1BB18C26A05005D3989 /* icon_xout.png */; };
@@ -88,6 +89,7 @@
 		3537D1F818BBE3700021C8CF /* Project_FieldlordTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Project_FieldlordTests.m; sourceTree = "<group>"; };
 		3537D20618BBE3FC0021C8CF /* MainGameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGameController.h; sourceTree = "<group>"; };
 		3537D20718BBE3FC0021C8CF /* MainGameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainGameController.m; sourceTree = "<group>"; };
+		35722E5C18D20A87008D71F9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		357CF1B918C26A05005D3989 /* icon_speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_speaker.png; sourceTree = "<group>"; };
 		357CF1BA18C26A05005D3989 /* icon_speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_speaker@2x.png"; sourceTree = "<group>"; };
 		357CF1BB18C26A05005D3989 /* icon_xout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_xout.png; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35722E5D18D20A87008D71F9 /* AudioToolbox.framework in Frameworks */,
 				35F6210718C6C51D00179473 /* GameKit.framework in Frameworks */,
 				35F6210518C6C34700179473 /* SystemConfiguration.framework in Frameworks */,
 				357CF1D018C26BEA005D3989 /* AVFoundation.framework in Frameworks */,
@@ -191,6 +194,7 @@
 		3537D1D218BBE3700021C8CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				35722E5C18D20A87008D71F9 /* AudioToolbox.framework */,
 				35F6210618C6C51D00179473 /* GameKit.framework */,
 				35F6210418C6C34700179473 /* SystemConfiguration.framework */,
 				357CF1CF18C26BEA005D3989 /* AVFoundation.framework */,

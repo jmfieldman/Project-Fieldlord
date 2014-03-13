@@ -655,6 +655,8 @@ SINGLETON_IMPL(MainGameController);
 		[self applyEarthquakeToView:_restartButton duration:du delay:de offset:of];
 		[self applyEarthquakeToView:_helpButton    duration:du delay:de offset:of];
 		[self applyEarthquakeToView:_statsView     duration:du delay:de offset:of];
+		
+		AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 	}
 	
 	/* Update stats */
@@ -700,6 +702,7 @@ SINGLETON_IMPL(MainGameController);
 	tapView.center = point;
 	tapView.backgroundColor = [UIColor clearColor];
 	tapView.userInteractionEnabled = NO;
+	tapView.alpha = 0.5;
 	tapView.layer.borderWidth = 30;
 	tapView.layer.borderColor = [UIColor colorWithHue:(0)/256.0 saturation:0.5 brightness:1 alpha:1].CGColor;
 	tapView.layer.cornerRadius = 70;
