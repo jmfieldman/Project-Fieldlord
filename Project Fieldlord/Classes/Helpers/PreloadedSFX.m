@@ -18,7 +18,14 @@ static int            s_instance[PLSFX_COUNT];
 static BOOL           s_mute = NO;
 
 static NSString *s_filenames[PLSFX_COUNT] = {
-	@"tap.wav",	
+	@"tap.wav",
+	@"arm.caf",
+	@"disarm.caf",
+	@"shotempty.caf",
+	@"shot1.caf",
+	@"shot2.caf",
+	@"shot3.caf",
+	@"tapfield.caf",
 };
 
 @implementation PreloadedSFX

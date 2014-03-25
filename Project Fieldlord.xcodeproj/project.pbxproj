@@ -38,6 +38,13 @@
 		357CF1D918C2778E005D3989 /* MuseoSansRounded-500.otf in Resources */ = {isa = PBXBuildFile; fileRef = 357CF1D618C2778E005D3989 /* MuseoSansRounded-500.otf */; };
 		357CF1DA18C2778E005D3989 /* MuseoSansRounded-700.otf in Resources */ = {isa = PBXBuildFile; fileRef = 357CF1D718C2778E005D3989 /* MuseoSansRounded-700.otf */; };
 		357CF1DD18C3A38B005D3989 /* HelpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 357CF1DC18C3A38B005D3989 /* HelpView.m */; };
+		35A7D3E018E23E8F000C41C3 /* arm.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3DE18E23E8F000C41C3 /* arm.caf */; };
+		35A7D3E118E23E8F000C41C3 /* disarm.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3DF18E23E8F000C41C3 /* disarm.caf */; };
+		35A7D3EC18E23F62000C41C3 /* shotempty.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3EB18E23F62000C41C3 /* shotempty.caf */; };
+		35A7D3F018E24141000C41C3 /* shot2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3ED18E24141000C41C3 /* shot2.caf */; };
+		35A7D3F118E24141000C41C3 /* shot3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3EE18E24141000C41C3 /* shot3.caf */; };
+		35A7D3F218E24141000C41C3 /* shot1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3EF18E24141000C41C3 /* shot1.caf */; };
+		35A7D3F418E24315000C41C3 /* tapfield.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3F318E24315000C41C3 /* tapfield.caf */; };
 		35E1612818BBE5C2002962D3 /* EXDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1611E18BBE5C2002962D3 /* EXDebug.m */; };
 		35E1612918BBE5C2002962D3 /* PersistentDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1611F18BBE5C2002962D3 /* PersistentDictionary.m */; };
 		35E1612A18BBE5C2002962D3 /* SKBounceAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1612118BBE5C2002962D3 /* SKBounceAnimation.m */; };
@@ -109,6 +116,13 @@
 		357CF1D718C2778E005D3989 /* MuseoSansRounded-700.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MuseoSansRounded-700.otf"; sourceTree = "<group>"; };
 		357CF1DB18C3A38B005D3989 /* HelpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpView.h; sourceTree = "<group>"; };
 		357CF1DC18C3A38B005D3989 /* HelpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpView.m; sourceTree = "<group>"; };
+		35A7D3DE18E23E8F000C41C3 /* arm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = arm.caf; sourceTree = "<group>"; };
+		35A7D3DF18E23E8F000C41C3 /* disarm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = disarm.caf; sourceTree = "<group>"; };
+		35A7D3EB18E23F62000C41C3 /* shotempty.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shotempty.caf; sourceTree = "<group>"; };
+		35A7D3ED18E24141000C41C3 /* shot2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shot2.caf; sourceTree = "<group>"; };
+		35A7D3EE18E24141000C41C3 /* shot3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shot3.caf; sourceTree = "<group>"; };
+		35A7D3EF18E24141000C41C3 /* shot1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shot1.caf; sourceTree = "<group>"; };
+		35A7D3F318E24315000C41C3 /* tapfield.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tapfield.caf; sourceTree = "<group>"; };
 		35E1611E18BBE5C2002962D3 /* EXDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXDebug.m; sourceTree = "<group>"; };
 		35E1611F18BBE5C2002962D3 /* PersistentDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentDictionary.m; sourceTree = "<group>"; };
 		35E1612018BBE5C2002962D3 /* SKBounceAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBounceAnimation.h; sourceTree = "<group>"; };
@@ -315,6 +329,13 @@
 		357CF1C918C26B49005D3989 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				35A7D3F318E24315000C41C3 /* tapfield.caf */,
+				35A7D3EF18E24141000C41C3 /* shot1.caf */,
+				35A7D3ED18E24141000C41C3 /* shot2.caf */,
+				35A7D3EE18E24141000C41C3 /* shot3.caf */,
+				35A7D3EB18E23F62000C41C3 /* shotempty.caf */,
+				35A7D3DE18E23E8F000C41C3 /* arm.caf */,
+				35A7D3DF18E23E8F000C41C3 /* disarm.caf */,
 				357CF1CA18C26B49005D3989 /* tap.wav */,
 			);
 			path = Audio;
@@ -467,6 +488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				357CF1D818C2778E005D3989 /* MuseoSansRounded-300.otf in Resources */,
+				35A7D3F418E24315000C41C3 /* tapfield.caf in Resources */,
 				357CF1C818C26A05005D3989 /* icon_restart@2x.png in Resources */,
 				35F620FD18BFA95500179473 /* reticule@2x.png in Resources */,
 				357CF1C218C26A05005D3989 /* icon_speaker@2x.png in Resources */,
@@ -476,17 +498,23 @@
 				35E1614618BE3D50002962D3 /* game_background@2x.png in Resources */,
 				3537D1DE18BBE3700021C8CF /* InfoPlist.strings in Resources */,
 				357CF1C518C26A05005D3989 /* icon_question.png in Resources */,
+				35A7D3F118E24141000C41C3 /* shot3.caf in Resources */,
 				35F620FC18BFA95500179473 /* reticule.png in Resources */,
 				357CF1C718C26A05005D3989 /* icon_restart.png in Resources */,
 				357CF1D318C26F8F005D3989 /* icon_gc.png in Resources */,
 				357CF1CB18C26B49005D3989 /* tap.wav in Resources */,
 				357CF1D918C2778E005D3989 /* MuseoSansRounded-500.otf in Resources */,
+				35A7D3E018E23E8F000C41C3 /* arm.caf in Resources */,
+				35A7D3EC18E23F62000C41C3 /* shotempty.caf in Resources */,
 				357CF1C618C26A05005D3989 /* icon_question@2x.png in Resources */,
 				35E1613818BC33FF002962D3 /* Dosis-Regular.otf in Resources */,
+				35A7D3F018E24141000C41C3 /* shot2.caf in Resources */,
 				35F620FB18BFA95500179473 /* game_background.png in Resources */,
 				357CF1C118C26A05005D3989 /* icon_speaker.png in Resources */,
+				35A7D3F218E24141000C41C3 /* shot1.caf in Resources */,
 				35F6210B18C7852B00179473 /* burst@2x.png in Resources */,
 				357CF1C418C26A05005D3989 /* icon_xout@2x.png in Resources */,
+				35A7D3E118E23E8F000C41C3 /* disarm.caf in Resources */,
 				357CF1C318C26A05005D3989 /* icon_xout.png in Resources */,
 				3537D1E618BBE3700021C8CF /* Images.xcassets in Resources */,
 			);

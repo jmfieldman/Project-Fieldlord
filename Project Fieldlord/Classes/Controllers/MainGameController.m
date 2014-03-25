@@ -356,14 +356,16 @@ SINGLETON_IMPL(MainGameController);
 }
 
 - (void) pressedShotgun:(id)sender {
-	[PreloadedSFX playSFX:PLSFX_MENUTAP];
+	//[PreloadedSFX playSFX:PLSFX_MENUTAP];
 	
 	if ([GameState sharedInstance].shotgunsLeft > 0) {
 	
+		[PreloadedSFX playSFX:_shotgunArmed?PLSFX_DISARMPOWERSHOT:PLSFX_ARMPOWERSHOT];
+		
 		[self armShotgun:!_shotgunArmed];
 		
 	} else {
-		
+		[PreloadedSFX playSFX:PLSFX_EMPTYPOWERSHOT];
 	}
 	
 }
@@ -634,11 +636,19 @@ SINGLETON_IMPL(MainGameController);
 				
 		/* New it */
 		[self setNewIt];
+			
+	}
+	
+	/* Play tap sound */
+	if (!_shotgunArmed) {
+		[PreloadedSFX playSFX:PLSFX_TAPFIELD];
 	}
 	
 	/* Shotgun? */
 	if (_shotgunArmed) {
 		[Flurry logEvent:@"Used_Powershot"];
+		
+		[PreloadedSFX playSFX:PLSFX_POWERSHOT1 + rand()%NUM_POWERSHOT_VARIETY];
 		
 		[self animateShotgunAtPoint:p];
 		[self armShotgun:NO];
