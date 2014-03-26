@@ -45,6 +45,27 @@
 		35A7D3F118E24141000C41C3 /* shot3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3EE18E24141000C41C3 /* shot3.caf */; };
 		35A7D3F218E24141000C41C3 /* shot1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3EF18E24141000C41C3 /* shot1.caf */; };
 		35A7D3F418E24315000C41C3 /* tapfield.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3F318E24315000C41C3 /* tapfield.caf */; };
+		35A7D40A18E33197000C41C3 /* ahh_long1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3F518E33197000C41C3 /* ahh_long1.caf */; };
+		35A7D40B18E33197000C41C3 /* ahh_long2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3F618E33197000C41C3 /* ahh_long2.caf */; };
+		35A7D40C18E33197000C41C3 /* aiii1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3F718E33197000C41C3 /* aiii1.caf */; };
+		35A7D40D18E33197000C41C3 /* gasp1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3F818E33197000C41C3 /* gasp1.caf */; };
+		35A7D40E18E33197000C41C3 /* gasp2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3F918E33197000C41C3 /* gasp2.caf */; };
+		35A7D40F18E33197000C41C3 /* haha1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3FA18E33197000C41C3 /* haha1.caf */; };
+		35A7D41018E33197000C41C3 /* haha2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3FB18E33197000C41C3 /* haha2.caf */; };
+		35A7D41118E33197000C41C3 /* haha3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3FC18E33197000C41C3 /* haha3.caf */; };
+		35A7D41218E33197000C41C3 /* nope1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3FD18E33197000C41C3 /* nope1.caf */; };
+		35A7D41318E33197000C41C3 /* nope2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3FE18E33197000C41C3 /* nope2.caf */; };
+		35A7D41418E33197000C41C3 /* nope3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D3FF18E33197000C41C3 /* nope3.caf */; };
+		35A7D41518E33197000C41C3 /* nope4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D40018E33197000C41C3 /* nope4.caf */; };
+		35A7D41618E33197000C41C3 /* nope5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D40118E33197000C41C3 /* nope5.caf */; };
+		35A7D41718E33197000C41C3 /* nope6.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D40218E33197000C41C3 /* nope6.caf */; };
+		35A7D41818E33197000C41C3 /* ooo_long1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D40318E33197000C41C3 /* ooo_long1.caf */; };
+		35A7D41918E33197000C41C3 /* ooo_long2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D40418E33197000C41C3 /* ooo_long2.caf */; };
+		35A7D41A18E33197000C41C3 /* ooo1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D40518E33197000C41C3 /* ooo1.caf */; };
+		35A7D41B18E33197000C41C3 /* tap.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D40618E33197000C41C3 /* tap.caf */; };
+		35A7D41C18E33197000C41C3 /* woo_long1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D40718E33197000C41C3 /* woo_long1.caf */; };
+		35A7D41D18E33197000C41C3 /* yaa_long1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D40818E33197000C41C3 /* yaa_long1.caf */; };
+		35A7D41E18E33197000C41C3 /* yay_long1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 35A7D40918E33197000C41C3 /* yay_long1.caf */; };
 		35E1612818BBE5C2002962D3 /* EXDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1611E18BBE5C2002962D3 /* EXDebug.m */; };
 		35E1612918BBE5C2002962D3 /* PersistentDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1611F18BBE5C2002962D3 /* PersistentDictionary.m */; };
 		35E1612A18BBE5C2002962D3 /* SKBounceAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E1612118BBE5C2002962D3 /* SKBounceAnimation.m */; };
@@ -123,6 +144,27 @@
 		35A7D3EE18E24141000C41C3 /* shot3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shot3.caf; sourceTree = "<group>"; };
 		35A7D3EF18E24141000C41C3 /* shot1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shot1.caf; sourceTree = "<group>"; };
 		35A7D3F318E24315000C41C3 /* tapfield.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tapfield.caf; sourceTree = "<group>"; };
+		35A7D3F518E33197000C41C3 /* ahh_long1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ahh_long1.caf; sourceTree = "<group>"; };
+		35A7D3F618E33197000C41C3 /* ahh_long2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ahh_long2.caf; sourceTree = "<group>"; };
+		35A7D3F718E33197000C41C3 /* aiii1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = aiii1.caf; sourceTree = "<group>"; };
+		35A7D3F818E33197000C41C3 /* gasp1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gasp1.caf; sourceTree = "<group>"; };
+		35A7D3F918E33197000C41C3 /* gasp2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gasp2.caf; sourceTree = "<group>"; };
+		35A7D3FA18E33197000C41C3 /* haha1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = haha1.caf; sourceTree = "<group>"; };
+		35A7D3FB18E33197000C41C3 /* haha2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = haha2.caf; sourceTree = "<group>"; };
+		35A7D3FC18E33197000C41C3 /* haha3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = haha3.caf; sourceTree = "<group>"; };
+		35A7D3FD18E33197000C41C3 /* nope1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nope1.caf; sourceTree = "<group>"; };
+		35A7D3FE18E33197000C41C3 /* nope2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nope2.caf; sourceTree = "<group>"; };
+		35A7D3FF18E33197000C41C3 /* nope3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nope3.caf; sourceTree = "<group>"; };
+		35A7D40018E33197000C41C3 /* nope4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nope4.caf; sourceTree = "<group>"; };
+		35A7D40118E33197000C41C3 /* nope5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nope5.caf; sourceTree = "<group>"; };
+		35A7D40218E33197000C41C3 /* nope6.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nope6.caf; sourceTree = "<group>"; };
+		35A7D40318E33197000C41C3 /* ooo_long1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ooo_long1.caf; sourceTree = "<group>"; };
+		35A7D40418E33197000C41C3 /* ooo_long2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ooo_long2.caf; sourceTree = "<group>"; };
+		35A7D40518E33197000C41C3 /* ooo1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ooo1.caf; sourceTree = "<group>"; };
+		35A7D40618E33197000C41C3 /* tap.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tap.caf; sourceTree = "<group>"; };
+		35A7D40718E33197000C41C3 /* woo_long1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = woo_long1.caf; sourceTree = "<group>"; };
+		35A7D40818E33197000C41C3 /* yaa_long1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = yaa_long1.caf; sourceTree = "<group>"; };
+		35A7D40918E33197000C41C3 /* yay_long1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = yay_long1.caf; sourceTree = "<group>"; };
 		35E1611E18BBE5C2002962D3 /* EXDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXDebug.m; sourceTree = "<group>"; };
 		35E1611F18BBE5C2002962D3 /* PersistentDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentDictionary.m; sourceTree = "<group>"; };
 		35E1612018BBE5C2002962D3 /* SKBounceAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKBounceAnimation.h; sourceTree = "<group>"; };
@@ -329,6 +371,27 @@
 		357CF1C918C26B49005D3989 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				35A7D3F518E33197000C41C3 /* ahh_long1.caf */,
+				35A7D3F618E33197000C41C3 /* ahh_long2.caf */,
+				35A7D3F718E33197000C41C3 /* aiii1.caf */,
+				35A7D3F818E33197000C41C3 /* gasp1.caf */,
+				35A7D3F918E33197000C41C3 /* gasp2.caf */,
+				35A7D3FA18E33197000C41C3 /* haha1.caf */,
+				35A7D3FB18E33197000C41C3 /* haha2.caf */,
+				35A7D3FC18E33197000C41C3 /* haha3.caf */,
+				35A7D3FD18E33197000C41C3 /* nope1.caf */,
+				35A7D3FE18E33197000C41C3 /* nope2.caf */,
+				35A7D3FF18E33197000C41C3 /* nope3.caf */,
+				35A7D40018E33197000C41C3 /* nope4.caf */,
+				35A7D40118E33197000C41C3 /* nope5.caf */,
+				35A7D40218E33197000C41C3 /* nope6.caf */,
+				35A7D40318E33197000C41C3 /* ooo_long1.caf */,
+				35A7D40418E33197000C41C3 /* ooo_long2.caf */,
+				35A7D40518E33197000C41C3 /* ooo1.caf */,
+				35A7D40618E33197000C41C3 /* tap.caf */,
+				35A7D40718E33197000C41C3 /* woo_long1.caf */,
+				35A7D40818E33197000C41C3 /* yaa_long1.caf */,
+				35A7D40918E33197000C41C3 /* yay_long1.caf */,
 				35A7D3F318E24315000C41C3 /* tapfield.caf */,
 				35A7D3EF18E24141000C41C3 /* shot1.caf */,
 				35A7D3ED18E24141000C41C3 /* shot2.caf */,
@@ -487,32 +550,53 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35A7D41E18E33197000C41C3 /* yay_long1.caf in Resources */,
+				35A7D41218E33197000C41C3 /* nope1.caf in Resources */,
 				357CF1D818C2778E005D3989 /* MuseoSansRounded-300.otf in Resources */,
+				35A7D40E18E33197000C41C3 /* gasp2.caf in Resources */,
 				35A7D3F418E24315000C41C3 /* tapfield.caf in Resources */,
 				357CF1C818C26A05005D3989 /* icon_restart@2x.png in Resources */,
+				35A7D40D18E33197000C41C3 /* gasp1.caf in Resources */,
 				35F620FD18BFA95500179473 /* reticule@2x.png in Resources */,
 				357CF1C218C26A05005D3989 /* icon_speaker@2x.png in Resources */,
 				357CF1DA18C2778E005D3989 /* MuseoSansRounded-700.otf in Resources */,
+				35A7D40F18E33197000C41C3 /* haha1.caf in Resources */,
 				357CF1D418C26F8F005D3989 /* icon_gc@2x.png in Resources */,
 				35F6210A18C7852B00179473 /* burst.png in Resources */,
 				35E1614618BE3D50002962D3 /* game_background@2x.png in Resources */,
+				35A7D41818E33197000C41C3 /* ooo_long1.caf in Resources */,
+				35A7D41318E33197000C41C3 /* nope2.caf in Resources */,
 				3537D1DE18BBE3700021C8CF /* InfoPlist.strings in Resources */,
 				357CF1C518C26A05005D3989 /* icon_question.png in Resources */,
+				35A7D41118E33197000C41C3 /* haha3.caf in Resources */,
 				35A7D3F118E24141000C41C3 /* shot3.caf in Resources */,
 				35F620FC18BFA95500179473 /* reticule.png in Resources */,
 				357CF1C718C26A05005D3989 /* icon_restart.png in Resources */,
+				35A7D40A18E33197000C41C3 /* ahh_long1.caf in Resources */,
+				35A7D41C18E33197000C41C3 /* woo_long1.caf in Resources */,
+				35A7D41518E33197000C41C3 /* nope4.caf in Resources */,
 				357CF1D318C26F8F005D3989 /* icon_gc.png in Resources */,
 				357CF1CB18C26B49005D3989 /* tap.wav in Resources */,
 				357CF1D918C2778E005D3989 /* MuseoSansRounded-500.otf in Resources */,
+				35A7D41018E33197000C41C3 /* haha2.caf in Resources */,
 				35A7D3E018E23E8F000C41C3 /* arm.caf in Resources */,
 				35A7D3EC18E23F62000C41C3 /* shotempty.caf in Resources */,
 				357CF1C618C26A05005D3989 /* icon_question@2x.png in Resources */,
+				35A7D41618E33197000C41C3 /* nope5.caf in Resources */,
 				35E1613818BC33FF002962D3 /* Dosis-Regular.otf in Resources */,
 				35A7D3F018E24141000C41C3 /* shot2.caf in Resources */,
+				35A7D40B18E33197000C41C3 /* ahh_long2.caf in Resources */,
+				35A7D41718E33197000C41C3 /* nope6.caf in Resources */,
+				35A7D41918E33197000C41C3 /* ooo_long2.caf in Resources */,
+				35A7D41B18E33197000C41C3 /* tap.caf in Resources */,
 				35F620FB18BFA95500179473 /* game_background.png in Resources */,
 				357CF1C118C26A05005D3989 /* icon_speaker.png in Resources */,
+				35A7D40C18E33197000C41C3 /* aiii1.caf in Resources */,
 				35A7D3F218E24141000C41C3 /* shot1.caf in Resources */,
+				35A7D41D18E33197000C41C3 /* yaa_long1.caf in Resources */,
+				35A7D41418E33197000C41C3 /* nope3.caf in Resources */,
 				35F6210B18C7852B00179473 /* burst@2x.png in Resources */,
+				35A7D41A18E33197000C41C3 /* ooo1.caf in Resources */,
 				357CF1C418C26A05005D3989 /* icon_xout@2x.png in Resources */,
 				35A7D3E118E23E8F000C41C3 /* disarm.caf in Resources */,
 				357CF1C318C26A05005D3989 /* icon_xout.png in Resources */,
