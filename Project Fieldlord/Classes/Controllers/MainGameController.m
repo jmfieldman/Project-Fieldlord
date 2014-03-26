@@ -558,6 +558,9 @@ SINGLETON_IMPL(MainGameController);
 		fMulti *= 1;
 	}
 	
+	int nopes = 0;
+	int any = 0;
+	BOOL gasp = _shotgunArmed;
 	for (MonsterInfo *activeMonster in _activeMonsters) {
 		CGPoint currentMonsterCenter = ((CALayer*)activeMonster.view.layer.presentationLayer).position;
 		float xdiff = currentMonsterCenter.x - point.x;
@@ -565,6 +568,7 @@ SINGLETON_IMPL(MainGameController);
 		float dist = sqrtf(xdiff * xdiff + ydiff * ydiff);
 		//NSLog(@"dist: %f", dist);
 		if (dist < fRadius) {
+			any = 1;
 			CGSize monsterSize = activeMonster.view.bounds.size;
 			if (fabs(xdiff) < 1) xdiff = 1;
 			if (fabs(ydiff) < 1) ydiff = 1;
@@ -574,10 +578,22 @@ SINGLETON_IMPL(MainGameController);
 			if (newPoint.y < monsterSize.height/2) newPoint.y = monsterSize.height/2;
 			if (newPoint.x > (_monsterField.bounds.size.width  - monsterSize.width/2))  newPoint.x = (_monsterField.bounds.size.width  - monsterSize.width/2);
 			if (newPoint.y > (_monsterField.bounds.size.height - monsterSize.height/2)) newPoint.y = (_monsterField.bounds.size.height - monsterSize.height/2);
+			nopes++;
 			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(floatBetween(0, 0.1) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
 				[activeMonster.view animateToNewCenter:newPoint];
+				if (nopes < 4) dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(floatBetween(0, 0.1) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
+					if (gasp) {
+						[PreloadedSFX playSFX:PLSFX_TAPPEDMISS1+rand()%NUM_TAPPEDMISS];
+					} else {
+						[PreloadedSFX playSFX:PLSFX_TAPPEDWRONG1+rand()%NUM_TAPPEDWRONG];
+					}
+				});
 			});
 		}
+	}
+	
+	if (!any && !_shotgunArmed) {
+		[PreloadedSFX playSFX:PLSFX_TAPFIELD];
 	}
 }
 
@@ -637,13 +653,14 @@ SINGLETON_IMPL(MainGameController);
 		/* New it */
 		[self setNewIt];
 			
+		/* Play got it sounds */
+		for (int i = 0; i < 6; i++) {
+			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(floatBetween(0, 0.5) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
+				[PreloadedSFX playSFX:PLSFX_TAPPEDGOTIT1+rand()%NUM_TAPPEDGOTIT];
+			});
+		}
 	}
-	
-	/* Play tap sound */
-	if (!_shotgunArmed) {
-		[PreloadedSFX playSFX:PLSFX_TAPFIELD];
-	}
-	
+		
 	/* Shotgun? */
 	if (_shotgunArmed) {
 		[Flurry logEvent:@"Used_Powershot"];

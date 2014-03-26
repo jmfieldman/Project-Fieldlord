@@ -26,6 +26,24 @@ static NSString *s_filenames[PLSFX_COUNT] = {
 	@"shot2.caf",
 	@"shot3.caf",
 	@"tapfield.caf",
+	
+	@"nope1.caf",
+	@"nope2.caf",
+	@"nope3.caf",
+	@"nope4.caf",
+	@"nope5.caf",
+	@"nope6.caf",
+	
+	@"aiii1.caf",
+	@"gasp1.caf",
+	@"gasp2.caf",
+	
+	@"yay_long1.caf",
+	@"woo_long1.caf",
+	@"ooo1.caf",
+	@"ooo_long1.caf",
+	@"aah_long1.caf",
+	@"aah_long2.caf",
 };
 
 @implementation PreloadedSFX
