@@ -14,6 +14,7 @@
 	SKBounceAnimation *_bodyBobbleBackWAnimation;
 	SKBounceAnimation *_bodyBobbleBackHAnimation;
 	
+	BOOL _isBobbling;
 }
 
 @property (nonatomic, strong, readonly) UIView *bodyView;

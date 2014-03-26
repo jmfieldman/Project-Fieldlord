@@ -180,12 +180,23 @@
 
 - (void) animateBodyBobbleWithDuration:(float)duration {
 	
+	if (_isBobbling) return;
+	_isBobbling = YES;
+	
 	[self.layer addAnimation:_bodyBobbleWideWAnimation forKey:@"bobbleW"];
 	[self.layer addAnimation:_bodyBobbleWideHAnimation forKey:@"bobbleH"];
 	
+	
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
+		_isBobbling = NO;
+				
 		[self.layer addAnimation:_bodyBobbleBackWAnimation forKey:@"bobbleW"];
 		[self.layer addAnimation:_bodyBobbleBackHAnimation forKey:@"bobbleH"];
+	
+		if (rand()%2==0) dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.02 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
+			[PreloadedSFX playSFX:PLSFX_POP1+rand()%NUM_POP];
+		});
+		
 	});
 	
 }

@@ -36,6 +36,11 @@ typedef enum PreloadedSFXType {
 	PLSFX_TAPPEDGOTIT5,
 	PLSFX_TAPPEDGOTIT6,
 	
+	PLSFX_POP1,
+	PLSFX_POP2,
+	PLSFX_POP3,
+	PLSFX_POP4,
+	
 	PLSFX_COUNT,
 } PreloadedSFXType_t;
 
@@ -44,6 +49,7 @@ typedef enum PreloadedSFXType {
 #define NUM_TAPPEDWRONG       6
 #define NUM_TAPPEDMISS        3
 #define NUM_TAPPEDGOTIT       6
+#define NUM_POP               3
 
 @interface PreloadedSFX : NSObject {
 

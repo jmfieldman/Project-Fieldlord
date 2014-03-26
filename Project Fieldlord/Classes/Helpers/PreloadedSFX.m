@@ -44,6 +44,12 @@ static NSString *s_filenames[PLSFX_COUNT] = {
 	@"ooo_long1.caf",
 	@"aah_long1.caf",
 	@"aah_long2.caf",
+	
+	@"pop4.caf",
+	@"pop2.caf",
+	@"pop3.caf",
+	@"pop1.caf",
+	
 };
 
 @implementation PreloadedSFX
