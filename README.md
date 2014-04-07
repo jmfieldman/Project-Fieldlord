@@ -2,6 +2,7 @@ Minion Tap a.k.a. Project-Fieldlord
 ===================================
 
 <a href="http://www.fieldman.org/minion-tap">http://www.fieldman.org/minion-tap</a>
+
 <a href="https://itunes.apple.com/us/app/minion-tap/id834704371">App Store Link</a>
 
 I teach several Design and Data Structures classes at <a href="http://www.hw.com">Harvard-Westlake School</a>. During the two-week midterm review time, I decided to spend a 45-minute class period building an iOS app from scratch on the overhead projector in front of the class.
